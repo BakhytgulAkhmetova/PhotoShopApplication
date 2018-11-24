@@ -6,10 +6,6 @@ async function getCustomerList(sqlConfig) {
     return result.recordset;
 }
 
-async function deleteCustomer(pool) {
-    return await pool.request().execute('DeleteCustomer');
-}
-
 module.exports = { 
     getCustomerList
  };

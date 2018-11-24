@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 const sqlConfig = { 
@@ -8,6 +9,7 @@ const sqlConfig = {
       trustedConnection: true
     }
 }
+app.use(bodyParser.urlencoded({ extended: true }));
 require('./routes/customer')(app, sqlConfig);
 // require('./routes/error')(app, sqlConfig);
 app.listen(3000);

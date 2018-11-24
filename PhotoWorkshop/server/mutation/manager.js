@@ -1,41 +1,37 @@
 const sql = require('mssql/msnodesqlv8')
 
-async function addCustomer(sqlConfig, customer) {
+async function addManager(sqlConfig, manager) {
     const pool = await new sql.ConnectionPool(sqlConfig).connect();
-    const { firstName, lastName, phone, address, login, password } = customer
+    const { firstName, lastName, login, password } = manager;
     return await pool.request()
     .input('FIRSTNAME', sql.NVarChar(50), firstName)
     .input('LASTNAME', sql.NVarChar(50), lastName)
-    .input('PHONE', sql.NVarChar(10), phone)
-    .input('ADDRESS', sql.NVarChar(255), address)
     .input('LOGIN', sql.NVarChar(50), login)
     .input('PASSWORD', sql.Char(60), password)
-    .execute('AddCustomer');
+    .execute('AddManager');
 }
 
-async function updateCustomer(sqlConfig, id, customerUpdated) {
+async function updateManager(sqlConfig, id, managerUpdated) {
     const pool = await new sql.ConnectionPool(sqlConfig).connect();
-    const { firstName, lastName, phone, address, login, password } = customerUpdated
+    const { firstName, lastName, login, password } = managerUpdated;
     return await pool.request()
     .input('ID', sql.Int, id)
     .input('FIRSTNAME', sql.NVarChar(50), firstName)
     .input('LASTNAME', sql.NVarChar(50), lastName)
-    .input('PHONE', sql.NVarChar(10), phone)
-    .input('ADDRESS', sql.NVarChar(255), address)
     .input('LOGIN', sql.NVarChar(50), login)
     .input('PASSWORD', sql.Char(60), password)
-    .execute('UpdateCustomer');
+    .execute('UpdateManager');
 }
 
-async function deleteCustomer(sqlConfig, id) {
+async function deleteManager(sqlConfig, id) {
     const pool = await new sql.ConnectionPool(sqlConfig).connect();
     return await pool.request()
     .input('ID', sql.Int, id)
-    .execute('DeleteCustomer');
+    .execute('DeleteManager');
 }
 
 module.exports = { 
-    addCustomer,
-    updateCustomer,
-    deleteCustomer
+    addManager,
+    updateManager,
+    deleteManager
  };
