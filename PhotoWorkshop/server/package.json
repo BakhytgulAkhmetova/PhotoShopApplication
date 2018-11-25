@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "4.16.4",
-    "msnodesqlv8": "^0.6.9",
+    "msnodesqlv8": "0.6.9",
     "mssql": "4.2.3",
     "nodemon": "1.18.6"
   }
