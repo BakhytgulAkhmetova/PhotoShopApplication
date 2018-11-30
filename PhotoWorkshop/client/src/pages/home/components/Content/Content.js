@@ -7,21 +7,23 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 
+import { photoShootPath, photoDocumentPath, photoPrintPath } from './constants';
+
 import { styles } from './styles';
 
 import './Content.scss';
 
 const titleData = [{
-    img:'1',
-    title: 'photo shoot'
+    img: photoShootPath,
+    title: 'Photo shoot'
 },
 {
-    img:'2',
-    title: 'photo doc'
+    img: photoDocumentPath,
+    title: 'Photo document'
 },
 {
-    img:'3',
-    title: 'photo print'
+    img: photoPrintPath,
+    title: 'Photo print'
 }];
 
 const Content = (props) => {
