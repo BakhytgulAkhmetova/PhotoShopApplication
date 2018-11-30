@@ -7,8 +7,7 @@ export const styles = theme => ({
         backgroundColor: theme.palette.background.paper
     },
     gridList: {
-        width: 800,
-        height: 450
+        width: '90%'
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)'

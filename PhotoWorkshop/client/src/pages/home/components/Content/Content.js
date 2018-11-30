@@ -9,18 +9,18 @@ import InfoIcon from '@material-ui/icons/Info';
 
 import { styles } from './styles';
 
-import './Content.css';
+import './Content.scss';
 
 const titleData = [{
-    img:'',
+    img:'1',
     title: 'photo shoot'
 },
 {
-    img:'',
+    img:'2',
     title: 'photo doc'
 },
 {
-    img:'',
+    img:'3',
     title: 'photo print'
 }];
 
@@ -32,7 +32,7 @@ const Content = (props) => {
             <h1 className='home-content__capture' >Main services</h1>
             <div className={classes.root}>
                 <GridList
-                    cols='3'
+                    cols={3}
                     className={classes.gridList}>
                     {titleData.map(tile => (
                         <GridListTile key={tile.img}>
