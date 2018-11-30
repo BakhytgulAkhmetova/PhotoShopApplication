@@ -9,7 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import { styles } from './styles';
 
-const AppHeader = (props) => {
+const Header = (props) => {
     const { classes } = props;
 
     return (
@@ -24,8 +24,8 @@ const AppHeader = (props) => {
     );
 };
 
-AppHeader.propTypes = {
+Header.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(AppHeader);
+export default withStyles(styles)(Header);

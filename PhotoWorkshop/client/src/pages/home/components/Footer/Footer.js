@@ -5,9 +5,9 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import PhotoCamera  from '@material-ui/icons/PhotoCamera';
 
-import { styles } from '../AppFooter/styles';
+import { styles } from '../Footer/styles';
 
-const AppFooter = (props) => {
+const Footer = (props) => {
     const { classes } = props;
 
     return (
@@ -19,8 +19,8 @@ const AppFooter = (props) => {
     );
 };
 
-AppFooter.propTypes = {
+Footer.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(AppFooter);
+export default withStyles(styles)(Footer);

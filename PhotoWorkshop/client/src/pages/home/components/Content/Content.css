@@ -1,0 +1,9 @@
+.home-content{
+    margin-top: 100px;
+}
+
+.home-content__capture {
+    width: 200px;
+    padding: 50px 0;
+    margin: auto;
+}
