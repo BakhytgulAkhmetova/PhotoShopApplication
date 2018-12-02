@@ -1,3 +1,17 @@
 export const initialStateModal = {
-    isOpen: true
+    isOpen: false,
+    style:'',
+    header: null,
+    content: null
 };
+
+export const emptyCustomer = {
+    firstName: '',
+    lastName: '',
+    phone: '',
+    address: '',
+    login: '',
+    password: ''
+};
+
+export const customerList = [];
