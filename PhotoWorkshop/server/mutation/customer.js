@@ -2,7 +2,7 @@ const sql = require('mssql/msnodesqlv8')
 
 async function addCustomer(sqlConfig, customer) {
     const pool = await new sql.ConnectionPool(sqlConfig).connect();
-    const { firstName, lastName, phone, address, login, password } = customer
+    const { firstName, lastName, phone, address, login, password } = customer;
     return await pool.request()
     .input('FIRSTNAME', sql.NVarChar(50), firstName)
     .input('LASTNAME', sql.NVarChar(50), lastName)

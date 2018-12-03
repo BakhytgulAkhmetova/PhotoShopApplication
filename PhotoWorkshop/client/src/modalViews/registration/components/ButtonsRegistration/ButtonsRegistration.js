@@ -9,8 +9,9 @@ const mapDispatchToProps = (dispatch, { customer }) => ({
     onCancel: () => {
         dispatch(closeModal());
     },
-    onRegistrate: () => {
-        dispatch(addCustomer(customer));
+    onRegistrate: async () => {
+        await dispatch(addCustomer(customer));
+        dispatch(closeModal());
     }
 });
 

@@ -15,3 +15,5 @@ export const emptyCustomer = {
 };
 
 export const customerList = [];
+
+export const isFetching = false;
