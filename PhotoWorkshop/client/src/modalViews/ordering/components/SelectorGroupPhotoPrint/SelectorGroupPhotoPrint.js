@@ -34,13 +34,14 @@ class SelectorGroupPhotoPrint extends React.Component {
   };
 
   render() {
-      const { classes } = this.props;
+      const { classes, disable } = this.props;
 
       return (
           <div className={classes.root} >
               <FormControl className={classes.formControl}>
                   <InputLabel htmlFor='format-simple'>Format</InputLabel>
                   <Select
+                      disabled={disable}
                       value={this.state.format}
                       onChange={this.handleChange}
                       inputProps={{
@@ -60,6 +61,7 @@ class SelectorGroupPhotoPrint extends React.Component {
               <FormControl className={classes.formControl}>
                   <InputLabel htmlFor='material-simple'>Material</InputLabel>
                   <Select
+                      disabled={disable}
                       value={this.state.material}
                       onChange={this.handleChange}
                       inputProps={{
@@ -82,7 +84,8 @@ class SelectorGroupPhotoPrint extends React.Component {
 }
 
 SelectorGroupPhotoPrint.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    disable: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(SelectorGroupPhotoPrint);

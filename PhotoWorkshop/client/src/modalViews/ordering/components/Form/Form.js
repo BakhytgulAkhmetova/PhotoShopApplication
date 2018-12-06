@@ -41,11 +41,11 @@ class Form extends React.Component {
                       value={this.state.value}
                       onChange={this.handleChange}>
                       <FormControlLabel value='photoPrint' control={<Radio />} label='Photo Print' />
-                      <SelectorGroupPhotoPrint/>
+                      <SelectorGroupPhotoPrint disable={this.state.value !== 'photoPrint'} />
                       <FormControlLabel value='photoDocument' control={<Radio/>} label='Photo on document' />
-                      <SelectorGroupPhotoDoc/>
+                      <SelectorGroupPhotoDoc disable={this.state.value !== 'photoDocument'}/>
                       <FormControlLabel value='photoShoot' control={<Radio />} label='Photo Shoot'/>
-                      <SelectorGroupPhotoShoot/>
+                      <SelectorGroupPhotoShoot disable={this.state.value !== 'photoShoot'}/>
                   </RadioGroup>
               </FormControl>
               <SelectTarif/>

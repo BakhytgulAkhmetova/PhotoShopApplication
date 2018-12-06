@@ -36,13 +36,14 @@ class SelectorGroupPhotoDoc extends React.Component {
   };
 
   render() {
-      const { classes } = this.props;
+      const { classes, disable } = this.props;
 
       return (
           <div className={classes.root} >
               <FormControl className={classes.formControl}>
                   <InputLabel htmlFor='docTypes-simple'>Document</InputLabel>
                   <Select
+                      disabled={disable}
                       value={this.state.docTypes}
                       onChange={this.handleChange}
                       inputProps={{
@@ -62,6 +63,7 @@ class SelectorGroupPhotoDoc extends React.Component {
               <FormControl className={classes.formControl}>
                   <InputLabel htmlFor='material-simple'>Material</InputLabel>
                   <Select
+                      disabled={disable}
                       value={this.state.material}
                       onChange={this.handleChange}
                       inputProps={{
@@ -81,6 +83,7 @@ class SelectorGroupPhotoDoc extends React.Component {
               <FormControl className={classes.formControl}>
                   <InputLabel htmlFor='additionalServices-simple'>Additional</InputLabel>
                   <Select
+                      disabled={disable}
                       value={this.state.additionalServices}
                       onChange={this.handleChange}
                       inputProps={{
@@ -103,7 +106,8 @@ class SelectorGroupPhotoDoc extends React.Component {
 }
 
 SelectorGroupPhotoDoc.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    disable: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(SelectorGroupPhotoDoc);

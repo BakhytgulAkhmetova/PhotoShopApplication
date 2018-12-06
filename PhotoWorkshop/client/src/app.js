@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { store } from './store/store';
 import { Home } from './pages/home';
 import { Customer } from './pages/customer';
+import { Manager } from './pages/manager';
 import { ModalProvider } from './components/ModalProvider';
 
 import './app.scss';
@@ -18,6 +19,7 @@ class App extends Component {
                     <Router>
                         <Switch>
                             <Route path='/customer' component={Customer} />
+                            <Route path='/manager' component={Manager} />
                             <Route path='/' component={Home} />
                         </Switch>
 
