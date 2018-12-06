@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 
+import { TablePaginationActionsWrapped } from '../TablePaginationActionsWrapped';
+
 const TFoot = ({ rows, rowsPerPage, page, handleChangePage, handleChangeRowsPerPage }) => {
     return (<TableFooter>
         <TableRow>
@@ -16,6 +18,7 @@ const TFoot = ({ rows, rowsPerPage, page, handleChangePage, handleChangeRowsPerP
                 SelectProps={{
                     native: true
                 }}
+                ActionsComponent={TablePaginationActionsWrapped}
                 onChangePage={handleChangePage}
                 onChangeRowsPerPage={handleChangeRowsPerPage}/>
         </TableRow>

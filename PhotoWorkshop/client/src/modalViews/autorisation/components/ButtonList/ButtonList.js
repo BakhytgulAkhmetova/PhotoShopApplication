@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
-const ButtonsAutorisation = connect(null, mapDispatchToProps)(({ onOpenRegistration, onSignIn }) => [<Button
+const ButtonList = connect(null, mapDispatchToProps)(({ onOpenRegistration, onSignIn }) => [<Button
     key='cancel'
     onClick={onOpenRegistration}
     variant='outlined' size='medium' color='primary'>
@@ -26,8 +26,8 @@ registration </Button>, <Button
     variant='contained' size='medium' color='primary'>
 sign in </Button>]);
 
-ButtonsAutorisation.propTypes = {
+ButtonList.propTypes = {
     onOpenRegistration: PropTypes.func.isRequired
 };
 
-export default ButtonsAutorisation;
+export default ButtonList;

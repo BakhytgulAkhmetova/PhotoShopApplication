@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose, withState, withHandlers } from 'recompose';
 
-import { FormRegistration } from '../FormRegistration';
+import { Form } from '../Form';
 import { ButtonList } from '../ButtonList';
 import { emptyCustomer } from '../../../../store/data';
 
@@ -18,7 +18,7 @@ const Content = connect(null, null)(({
     customer,
     onChangeCustomer
 }) => (<div>
-    <FormRegistration
+    <Form
         onChangeCustomer={onChangeCustomer}
         customer={customer}/>
     <ButtonList customer={customer}/>

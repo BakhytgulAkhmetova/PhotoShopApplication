@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch, { customer }) => ({
     }
 });
 
-const ButtonsRegistration = connect(null, mapDispatchToProps)(({ onCancel, onRegistrate }) => [<Button
+const ButtonList = connect(null, mapDispatchToProps)(({ onCancel, onRegistrate }) => [<Button
     key='cancel'
     onClick={onCancel}
     variant='outlined' size='medium' color='primary'>
@@ -23,6 +23,6 @@ cancel </Button>, <Button
     key='registration'
     onClick={onRegistrate}
     variant='contained' size='medium' color='primary'>
-ok </Button>]);
+order </Button>]);
 
-export default ButtonsRegistration;
+export default ButtonList;

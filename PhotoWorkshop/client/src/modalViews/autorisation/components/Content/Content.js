@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose, withState, withHandlers } from 'recompose';
 
 import { FormAutorisation } from '../FormAutorisation';
-import { ButtonsAutorisation } from '../ButtonsAutorisation';
+import { ButtonList } from '../ButtonList';
 import { emptyCustomer } from '../../../../store/data';
 
 // const handlers = {
@@ -18,7 +18,7 @@ import { emptyCustomer } from '../../../../store/data';
 const Content = connect(null, null)(() => (
     <div>
         <FormAutorisation/>
-        <ButtonsAutorisation/>
+        <ButtonList/>
     </div>
 ));
 
