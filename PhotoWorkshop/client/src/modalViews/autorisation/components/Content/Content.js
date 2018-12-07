@@ -5,7 +5,9 @@ import { compose, withState, withHandlers } from 'recompose';
 
 import { FormAutorisation } from '../FormAutorisation';
 import { ButtonList } from '../ButtonList';
-import { emptyCustomer } from '../../../../store/data';
+// import { emptyCustomer } from '../../../../store/customer/initilalState';
+
+// import './Content.scss';
 
 // const handlers = {
 //     onChangeCustomer: ({ customer, changeCustomer }) => event => {
@@ -16,7 +18,7 @@ import { emptyCustomer } from '../../../../store/data';
 // };
 
 const Content = connect(null, null)(() => (
-    <div>
+    <div className='autorisation-content'>
         <FormAutorisation/>
         <ButtonList/>
     </div>
@@ -26,6 +28,6 @@ Content.propTypes = {
 };
 
 export default compose(
-    withState('customer', 'changeCustomer', emptyCustomer),
+    withState('customer', 'changeCustomer', {}),
     withHandlers(),
 )(Content);

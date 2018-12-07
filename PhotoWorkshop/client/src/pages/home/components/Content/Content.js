@@ -41,11 +41,9 @@ const Content = (props) => {
                             <img src={tile.img} alt={tile.title} />
                             <GridListTileBar
                                 title={tile.title}
-                                actionIcon={
-                                    <IconButton>
-                                        <InfoIcon />
-                                    </IconButton>
-                                }/>
+                                actionIcon={<IconButton>
+                                    <InfoIcon />
+                                </IconButton>}/>
                         </GridListTile>
                     ))}
                 </GridList>

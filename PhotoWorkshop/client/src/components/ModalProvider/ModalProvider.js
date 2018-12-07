@@ -3,7 +3,7 @@ import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { closeModal } from '../../store/actionCreators/modal';
+import { closeModal } from '../../store/modal/actionCreators';
 
 const mapStateToProps = (state) => ({
     modal: state.modal

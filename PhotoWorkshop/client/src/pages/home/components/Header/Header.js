@@ -7,9 +7,9 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
-// import { Content } from '../../../../modalViews/autorisation/components/Content';
-import { Content } from '../../../../modalViews/ordering/components/Content';
-import { openModal, fillHeader, fillContent, changeStyle } from '../../../../store/actionCreators/modal';
+import { Content } from '../../../../modalViews/autorisation/components/Content';
+// import { Content } from '../../../../modalViews/ordering/components/Content';
+import { openModal, fillHeader, fillContent, changeStyle } from '../../../../store/modal/actionCreators';
 
 import { styles } from './styles';
 import './Header.scss';
@@ -19,18 +19,18 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) =>  ({
-    // onClick: () => {
-    //     dispatch(fillHeader(<h1>Sigh in</h1>));
-    //     dispatch(fillContent(<Content/>));
-    //     dispatch(changeStyle('modal-autorisation'));
-    //     dispatch(openModal());
-    // }
     onClick: () => {
-        dispatch(fillHeader(<h1>New order</h1>));
+        dispatch(fillHeader(<h1 className='capture-autorisation'>Sigh in</h1>));
         dispatch(fillContent(<Content/>));
-        dispatch(changeStyle('modal-ordering'));
+        dispatch(changeStyle('modal-autorisation'));
         dispatch(openModal());
     }
+    // onClick: () => {
+    //     dispatch(fillHeader(<h1>New order</h1>));
+    //     dispatch(fillContent(<Content/>));
+    //     dispatch(changeStyle('modal-ordering'));
+    //     dispatch(openModal());
+    // }
 });
 
 const Header = connect(mapStateToProps, mapDispatchToProps)(({ onClick, classes }) => {

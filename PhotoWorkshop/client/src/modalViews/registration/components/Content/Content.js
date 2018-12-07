@@ -4,7 +4,6 @@ import { compose, withState, withHandlers } from 'recompose';
 
 import { FormRegistration } from '../FormRegistration';
 import { ButtonList } from '../ButtonList';
-import { emptyCustomer } from '../../../../store/data';
 
 const handlers = {
     onChangeCustomer: ({ customer, changeCustomer }) => event => {
@@ -28,6 +27,6 @@ Content.propTypes = {
 };
 
 export default compose(
-    withState('customer', 'changeCustomer', emptyCustomer),
+    withState('customer', 'changeCustomer', {}),
     withHandlers(handlers),
 )(Content);

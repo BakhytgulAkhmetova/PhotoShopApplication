@@ -1,8 +1,9 @@
 .modal-autorisation {
     background-color: white;
-    width: 300px;
-    margin-top: 15%;
-    margin-left: 40%;
+    min-width: 300px;
+    width: 20%;
+    margin-top: 10%;
+    margin-left: 35%;
     display: block;
 }
 
@@ -13,3 +14,6 @@
     display: block;
 }
 
+.capture-autorisation {
+    text-align: center;
+}

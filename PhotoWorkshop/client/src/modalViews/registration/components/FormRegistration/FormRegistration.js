@@ -7,6 +7,10 @@ const styles = theme => ({
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit
+    },
+    formRegistration: {
+        margin: 'auto',
+        width: '480px'
     }
 });
 
@@ -15,7 +19,7 @@ const FormRegistration = ({
     customer,
     onChangeCustomer }) => {
     return (
-        <form autoComplete='off'>
+        <form autoComplete='off' className={classes.formRegistration}>
             <TextField
                 required
                 onChange={onChangeCustomer}
@@ -85,4 +89,3 @@ FormRegistration.propTypes = {
 };
 
 export default withStyles(styles)(FormRegistration);
-

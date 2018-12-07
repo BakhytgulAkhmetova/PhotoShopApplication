@@ -2,8 +2,8 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 
-import { closeModal } from '../../../../store/actionCreators/modal';
-import { addCustomer } from '../../../../store/actionCreators/customer';
+import { closeModal } from '../../../../store/modal/actionCreators';
+import { addCustomer } from '../../../../store/customer/asyncActions';
 
 const mapDispatchToProps = (dispatch, { customer }) => ({
     onCancel: () => {

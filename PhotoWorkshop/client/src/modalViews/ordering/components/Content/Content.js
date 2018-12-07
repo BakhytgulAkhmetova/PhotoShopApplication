@@ -4,7 +4,7 @@ import { compose, withState, withHandlers } from 'recompose';
 
 import { Form } from '../Form';
 import { ButtonList } from '../ButtonList';
-import { emptyCustomer } from '../../../../store/data';
+import { emptyCustomer } from '../../../../store/customer/initilalState';
 
 const handlers = {
     onChangeCustomer: ({ customer, changeCustomer }) => event => {

@@ -1,5 +1,5 @@
-import { initialStateModal } from '../data';
-import * as types from '../actions/modal';
+import { default as initialStateModal } from './initilalState';
+import * as types from './actions';
 
 export const modal = (state = initialStateModal, action) => {
     switch (action.type) {
