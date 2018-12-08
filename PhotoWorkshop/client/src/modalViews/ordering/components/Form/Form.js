@@ -10,7 +10,11 @@ import { SelectorGroupPhotoDoc } from '../SelectorGroupPhotoDoc';
 import { SelectorGroupPhotoPrint } from '../SelectorGroupPhotoPrint';
 import { SelectorGroupPhotoShoot } from '../SelectorGroupPhotoShoot';
 import { SelectTarif } from '../SelectTarif';
-
+import { getFormatsFetch } from '../../../../api/format';
+import { getMaterialsFetch } from '../../../../api/material';
+import { getServicesAdditionalFetch } from '../../../../api/serviceAdditional';
+import { getServicePhotoShootFetch } from '../../../../api/servicePhotoShoot';
+import { getServicesPhotoDocumentFetch } from '../../../../api/servicePhotoDocument';
 
 const styles = theme => ({
     formControl: {
@@ -32,6 +36,12 @@ class Form extends React.Component {
 
   render() {
       const { classes } = this.props;
+
+      console.log(getFormatsFetch());
+      console.log(getMaterialsFetch());
+      console.log(getServicesAdditionalFetch());
+      console.log(getServicePhotoShootFetch());
+      console.log(getServicesPhotoDocumentFetch());
 
       return (
           <form className={classes.root}>
