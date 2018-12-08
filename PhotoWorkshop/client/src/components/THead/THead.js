@@ -7,7 +7,7 @@ const THead = () => {
     return (<TableHead>
         <TableRow>
             <TableCell>№</TableCell>
-            <TableCell numeric>Status</TableCell>
+            <TableCell>Status</TableCell>
         </TableRow>
     </TableHead>);
 };

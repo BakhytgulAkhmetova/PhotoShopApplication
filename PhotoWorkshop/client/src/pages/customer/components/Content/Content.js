@@ -1,14 +1,32 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { OrderTable } from '../../../../components/OrderTable';
 
 import './Content.scss';
 
-const Content = () => {
+const styles = theme => ({
+    btnOrder: {
+        border: '1px solid red'
+    }
+});
+
+
+const Content = ({ classes }) => {
     return (<div className='customer-content'>
-        <h1>My orders</h1>
+        <div className='customer-content__order-capture'>
+            <h1 className='order-capture__text'>My orders</h1>
+            <Button className={classNames('order-capture__button', classes.btnOrder)} >Create new</Button>
+        </div>
         <OrderTable/>
     </div>);
 };
 
-export default Content;
+Content.propTypes = {
+    classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(Content);

@@ -3,57 +3,39 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import Paper from '@material-ui/core/Paper';
+import { connect } from 'react-redux';
 
-import { THead } from './components/THead';
-import { TBody } from './components/TBody';
-import { TFoot } from './components/TFoot';
+import { THead } from '../THead';
+import { TBody } from '../TBody';
+import { TFoot } from '../TFoot';
 
-function createData(id, status) {
-    return { id, status };
-}
+import { styles } from './styles';
 
-const styles = theme => ({
-    root: {
-        width: '50%',
-        marginTop: '60px',
-        margin: 'auto'
-    },
-    table: {
-        minWidth: 500
-    },
-    tableWrapper: {
-        overflowX: 'auto'
-    }
+const mapStateToProps = (state) => ({
+    data: state.order.orderCustomerList
 });
+
 
 class OrderTable extends React.Component {
     state = {
-        rows: [
-            createData(1, 'waiting'),
-            createData(34, 'ready'),
-            createData(35, 'in progress'),
-            createData(34, 'ready'),
-            createData(35, 'in progress'),
-            createData(34, 'ready'),
-            createData(35, 'in progress'),
-            createData(34, 'ready'),
-            createData(35, 'in progress'),
-            createData(34, 'ready'),
-            createData(35, 'in progress'),
-            createData(34, 'ready'),
-            createData(35, 'in progress')
-        ],
+        rows: [],
         page: 0,
         rowsPerPage: 5
     };
 
+    static getDerivedStateFromProps(props, state) {
+        if (props.data !== state.rows) {
+            return { rows: props.data };
+        }
+    }
+
   onHandleChangePage = (event, page) => {
       this.setState({ page });
-  };
+  }
 
   onHandleChangeRowsPerPage = event => {
       this.setState({ rowsPerPage: event.target.value });
-  };
+  }
 
   render() {
       const { classes } = this.props;
@@ -82,7 +64,8 @@ class OrderTable extends React.Component {
 }
 
 OrderTable.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    data: PropTypes.array.isRequired
 };
 
-export default withStyles(styles)(OrderTable);
+export default connect(mapStateToProps, null)(withStyles(styles)(OrderTable));

@@ -3,8 +3,19 @@
     min-height: 400px;
 }
 
-.customer-content__capture {
-    width: 200px;
-    padding: 50px 0;
-    margin: auto;
+.customer-content__order-capture {
+    display: flex;
+    flex-direction: row;
+    min-width: 300px;
+    width: 40%;
+    margin:auto;
+    align-items: baseline;
+}
+.order-capture__text {
+    width:50%;
+}
+
+.order-capture__button {
+    height: 40px;
+    width:30%;
 }

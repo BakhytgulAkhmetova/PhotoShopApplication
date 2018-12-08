@@ -7,6 +7,5 @@ export default {
         login: '',
         password: ''
     },
-    customerList: [],
     isFetching: false
 };

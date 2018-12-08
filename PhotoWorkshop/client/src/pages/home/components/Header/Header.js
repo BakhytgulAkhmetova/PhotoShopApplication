@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
 import { Content } from '../../../../modalViews/autorisation/components/Content';
-// import { Content } from '../../../../modalViews/ordering/components/Content';
 import { openModal, fillHeader, fillContent, changeStyle } from '../../../../store/modal/actionCreators';
 
 import { styles } from './styles';

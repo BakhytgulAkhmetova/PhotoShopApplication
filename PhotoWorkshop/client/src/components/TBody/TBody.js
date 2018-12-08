@@ -31,7 +31,7 @@ class TBody extends React.Component {
                             <TableCell component='th' scope='row'>
                                 {row.id}
                             </TableCell>
-                            <TableCell numeric>{row.status}</TableCell>
+                            <TableCell>{row.status}</TableCell>
                         </TableRow>
                     );
                 })}
