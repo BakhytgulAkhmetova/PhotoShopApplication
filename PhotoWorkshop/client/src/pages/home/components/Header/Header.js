@@ -24,12 +24,6 @@ const mapDispatchToProps = (dispatch) =>  ({
         dispatch(changeStyle('modal-autorisation'));
         dispatch(openModal());
     }
-    // onClick: () => {
-    //     dispatch(fillHeader(<h1>New order</h1>));
-    //     dispatch(fillContent(<Content/>));
-    //     dispatch(changeStyle('modal-ordering'));
-    //     dispatch(openModal());
-    // }
 });
 
 const Header = connect(mapStateToProps, mapDispatchToProps)(({ onClick, classes }) => {

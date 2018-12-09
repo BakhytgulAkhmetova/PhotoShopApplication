@@ -1,0 +1,14 @@
+.form__finishing-options {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.finishing-options__tarif,
+.finishing-options__price {
+    width: 30%;
+}
+
+.finishing-options__price {
+    margin-left: 5px;
+}

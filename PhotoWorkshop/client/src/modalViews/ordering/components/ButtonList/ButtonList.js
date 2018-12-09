@@ -1,28 +1,40 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
 
-import { closeModal } from '../../../../store/modal/actionCreators';
-import { addCustomer } from '../../../../store/customer/asyncActions';
+// import { closeModal } from '../../../../store/modal/actionCreators';
 
-const mapDispatchToProps = (dispatch, { customer }) => ({
-    onCancel: () => {
-        dispatch(closeModal());
+// const mapDispatchToProps = (dispatch) => ({
+//     onCancel: () => {
+//         dispatch(closeModal());
+//     },
+//     onRegistrate: async () => {
+//         dispatch(closeModal());
+//     }
+// });
+
+const styles = theme => ({
+    buttonLeft: {
+        margin: '5px 15px',
+        width: '130px'
     },
-    onRegistrate: async () => {
-        await dispatch(addCustomer(customer));
-        dispatch(closeModal());
+    buttonRight: {
+        marginLeft: '120px',
+        width: '130px'
     }
 });
 
-const ButtonList = connect(null, mapDispatchToProps)(({ onCancel, onRegistrate }) => [<Button
+const ButtonList = ({ onCancel, onRegistrate, classes }) => [<Button
     key='cancel'
+    className={classes.buttonLeft}
     onClick={onCancel}
     variant='outlined' size='medium' color='primary'>
 cancel </Button>, <Button
     key='registration'
+    className={classes.buttonRight}
     onClick={onRegistrate}
     variant='contained' size='medium' color='primary'>
-order </Button>]);
+order </Button>];
 
-export default ButtonList;
+export default  withStyles(styles)(ButtonList);

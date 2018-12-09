@@ -20,9 +20,6 @@ const styles = theme => ({
     }
 });
 
-const format = ['small', 'big'];
-const material = ['Glossy', 'Opaque'];
-
 class SelectorGroupPhotoPrint extends React.Component {
   state = {
       format: '',
@@ -34,7 +31,9 @@ class SelectorGroupPhotoPrint extends React.Component {
   };
 
   render() {
-      const { classes, disable } = this.props;
+      const { classes, disable, formatList, materialList } = this.props;
+
+      console.log(formatList);
 
       return (
           <div className={classes.root} >
@@ -52,8 +51,11 @@ class SelectorGroupPhotoPrint extends React.Component {
                           <em>None</em>
                       </MenuItem>
                       {
-                          format.map((name, index) => (
-                              <MenuItem key={name + index} value={name} >{name}</MenuItem>
+                          formatList.map((format) => (
+                              <MenuItem
+                                  key={format.ID + format.Name}
+                                  value={format.Name} >
+                                  {format.Name}</MenuItem>
                           ))
                       }
                   </Select>
@@ -72,8 +74,11 @@ class SelectorGroupPhotoPrint extends React.Component {
                           <em>None</em>
                       </MenuItem>
                       {
-                          material.map((name, index) => (
-                              <MenuItem key={name + index} value={name} >{name}</MenuItem>
+                          materialList.map((material) => (
+                              <MenuItem
+                                  key={material.ID + material.Name}
+                                  value={material.Name} >
+                                  {material.Name}</MenuItem>
                           ))
                       }
                   </Select>
@@ -85,7 +90,9 @@ class SelectorGroupPhotoPrint extends React.Component {
 
 SelectorGroupPhotoPrint.propTypes = {
     classes: PropTypes.object.isRequired,
-    disable: PropTypes.bool.isRequired
+    disable: PropTypes.bool.isRequired,
+    formatList: PropTypes.array.isRequired,
+    materialList: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(SelectorGroupPhotoPrint);

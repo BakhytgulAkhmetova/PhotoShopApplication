@@ -20,7 +20,7 @@ const styles = theme => ({
 
 const mapDispatchToProps = (dispatch) => ({
     handleClick: () => {
-        dispatch(fillHeader(<h1>New order</h1>));
+        dispatch(fillHeader(<h1 className='capture-ordering'>New order</h1>));
         dispatch(fillContent(<Content/>));
         dispatch(changeStyle('modal-ordering'));
         dispatch(openModal());

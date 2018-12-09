@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import classNames from 'classnames';
 
 const styles = theme => ({
     root: {
@@ -32,10 +33,10 @@ class SelectTarif extends React.Component {
   };
 
   render() {
-      const { classes } = this.props;
+      const { classes, componentLocation } = this.props;
 
       return (
-          <FormControl className={classes.formControl}>
+          <FormControl className={classNames(classes.formControl, componentLocation)}>
               <InputLabel htmlFor='tarif-simple'>Tarif</InputLabel>
               <Select
                   value={this.state.tarifs}
@@ -59,7 +60,8 @@ class SelectTarif extends React.Component {
 }
 
 SelectTarif.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    componentLocation: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(SelectTarif);

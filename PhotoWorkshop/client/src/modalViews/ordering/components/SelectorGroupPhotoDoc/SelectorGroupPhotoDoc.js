@@ -20,10 +20,6 @@ const styles = theme => ({
     }
 });
 
-const docTypes = ['Passport', 'Visa'];
-const material = ['Glossy', 'Opaque'];
-const additionalServices = ['Suit', 'Recond on Flesh memory'];
-
 class SelectorGroupPhotoDoc extends React.Component {
   state = {
       docTypes: '',
@@ -36,7 +32,7 @@ class SelectorGroupPhotoDoc extends React.Component {
   };
 
   render() {
-      const { classes, disable } = this.props;
+      const { classes, disable, serviceAdditionalList, materialList, servicePhotoDocumentList } = this.props;
 
       return (
           <div className={classes.root} >
@@ -54,8 +50,10 @@ class SelectorGroupPhotoDoc extends React.Component {
                           <em>None</em>
                       </MenuItem>
                       {
-                          docTypes.map((name, index) => (
-                              <MenuItem key={name + index} value={name} >{name}</MenuItem>
+                          servicePhotoDocumentList.map((service) => (
+                              <MenuItem
+                                  key={service.ID + service.DocumentType}
+                                  value={service.DocumentType} >{service.DocumentType}</MenuItem>
                           ))
                       }
                   </Select>
@@ -74,8 +72,8 @@ class SelectorGroupPhotoDoc extends React.Component {
                           <em>None</em>
                       </MenuItem>
                       {
-                          material.map((name, index) => (
-                              <MenuItem key={name + index} value={name} >{name}</MenuItem>
+                          materialList.map(({ ID, Name }) => (
+                              <MenuItem key={ID + Name} value={Name} >{Name}</MenuItem>
                           ))
                       }
                   </Select>
@@ -94,8 +92,8 @@ class SelectorGroupPhotoDoc extends React.Component {
                           <em>None</em>
                       </MenuItem>
                       {
-                          additionalServices.map((name, index) => (
-                              <MenuItem key={name + index} value={name} >{name}</MenuItem>
+                          serviceAdditionalList.map(({ ID, Name }) => (
+                              <MenuItem key={ID + Name} value={Name} >{Name}</MenuItem>
                           ))
                       }
                   </Select>
@@ -107,7 +105,10 @@ class SelectorGroupPhotoDoc extends React.Component {
 
 SelectorGroupPhotoDoc.propTypes = {
     classes: PropTypes.object.isRequired,
-    disable: PropTypes.bool.isRequired
+    disable: PropTypes.bool.isRequired,
+    materialList: PropTypes.array.isRequired,
+    serviceAdditionalList: PropTypes.array.isRequired,
+    servicePhotoDocumentList: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(SelectorGroupPhotoDoc);

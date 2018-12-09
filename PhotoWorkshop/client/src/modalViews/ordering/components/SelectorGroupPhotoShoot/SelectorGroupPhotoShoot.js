@@ -20,10 +20,6 @@ const styles = theme => ({
     }
 });
 
-const photoShootType = ['Family', 'Love story', 'Individual'];
-const material = ['Glossy', 'Opaque'];
-const additionalServices = ['Creation Idea', 'Rent of clothes', 'Make up', 'Hairstyle'];
-
 class SelectorGroupPhotoShoot extends React.Component {
   state = {
       photoShootType: '',
@@ -35,7 +31,7 @@ class SelectorGroupPhotoShoot extends React.Component {
   };
 
   render() {
-      const { classes, disable } = this.props;
+      const { classes, disable, serviceAdditionalList, servicePhotoShootList } = this.props;
 
       return (
           <div className={classes.root} >
@@ -53,28 +49,8 @@ class SelectorGroupPhotoShoot extends React.Component {
                           <em>None</em>
                       </MenuItem>
                       {
-                          photoShootType.map((name, index) => (
-                              <MenuItem key={name + index} value={name} >{name}</MenuItem>
-                          ))
-                      }
-                  </Select>
-              </FormControl>
-              <FormControl className={classes.formControl}>
-                  <InputLabel htmlFor='material-simple'>Material</InputLabel>
-                  <Select
-                      disabled={disable}
-                      value={this.state.material}
-                      onChange={this.handleChange}
-                      inputProps={{
-                          name: 'material',
-                          id: 'material-simple'
-                      }}>
-                      <MenuItem value=''>
-                          <em>None</em>
-                      </MenuItem>
-                      {
-                          material.map((name, index) => (
-                              <MenuItem key={name + index} value={name} >{name}</MenuItem>
+                          servicePhotoShootList.map(({ ID, Name }) => (
+                              <MenuItem key={ID + Name} value={Name} >{Name}</MenuItem>
                           ))
                       }
                   </Select>
@@ -93,8 +69,8 @@ class SelectorGroupPhotoShoot extends React.Component {
                           <em>None</em>
                       </MenuItem>
                       {
-                          additionalServices.map((name, index) => (
-                              <MenuItem key={name + index} value={name} >{name}</MenuItem>
+                          serviceAdditionalList.map(({ ID, Name }) => (
+                              <MenuItem key={ID + Name} value={Name} >{Name}</MenuItem>
                           ))
                       }
                   </Select>
@@ -106,7 +82,10 @@ class SelectorGroupPhotoShoot extends React.Component {
 
 SelectorGroupPhotoShoot.propTypes = {
     classes: PropTypes.object.isRequired,
-    disable: PropTypes.bool.isRequired
+    disable: PropTypes.bool.isRequired,
+    materialList: PropTypes.array.isRequired,
+    serviceAdditionalList: PropTypes.array.isRequired,
+    servicePhotoShootList: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(SelectorGroupPhotoShoot);
