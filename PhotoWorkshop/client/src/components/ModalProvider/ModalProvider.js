@@ -21,7 +21,8 @@ const ModalProvider = connect(mapStateToProps, mapDispatchToProps)(({ modal, onC
         <Modal
             onClose={onClose}
             open={modal.isOpen}>
-            <div className={modal.style}>
+            <div
+                className={modal.style}>
                 {modal.header}
                 {modal.content}
             </div>

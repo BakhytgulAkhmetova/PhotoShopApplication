@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { compose, withState, withHandlers } from 'recompose';
 
 import { FormRegistration } from '../FormRegistration';
@@ -13,17 +13,25 @@ const handlers = {
     }
 };
 
-const Content = connect(null, null)(({
+const Content = ({
     customer,
+    history,
     onChangeCustomer
-}) => (<div>
-    <FormRegistration
-        onChangeCustomer={onChangeCustomer}
-        customer={customer}/>
-    <ButtonList customer={customer}/>
-</div>));
+}) => {
+    return (<div>
+        <FormRegistration
+            onChangeCustomer={onChangeCustomer}
+            customer={customer}/>
+        <ButtonList
+            history={history}
+            customer={customer}/>
+    </div>);
+};
 
 Content.propTypes = {
+    customer: PropTypes.object.isRequired,
+    onChangeCustomer: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
 };
 
 export default compose(

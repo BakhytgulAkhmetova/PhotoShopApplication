@@ -4,7 +4,7 @@ import { addCustomerRequest, addCustomerSuccess, addCustomerFailure } from './ac
 export  const addCustomer = (payload) => {
     return dispatch => {
         dispatch(addCustomerRequest(payload));
-        addCustomerFetch()
+        addCustomerFetch(payload)
             .then(json => dispatch(addCustomerSuccess(json)))
             .catch(error => dispatch(addCustomerFailure(error)));
     };

@@ -8,6 +8,10 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { withStyles } from '@material-ui/core/styles';
+import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom';
+
+// import { auth } from '../../../app';
 
 const styles = theme => ({
     root: {
@@ -67,7 +71,10 @@ class MenuListComposition extends React.Component {
                               <ClickAwayListener onClickAway={this.handleClose}>
                                   <MenuList>
                                       <MenuItem onClick={this.handleClose}>Main services info</MenuItem>
-                                      <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                                      <MenuItem
+                                          onClick={() => {
+                                              //   auth.signout(() => history.push('/'));
+                                          }}>Logout</MenuItem>
                                   </MenuList>
                               </ClickAwayListener>
                           </Paper>
@@ -83,4 +90,7 @@ MenuListComposition.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(MenuListComposition);
+export default compose(
+    withRouter,
+    withStyles(styles)
+)(MenuListComposition);

@@ -1,6 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
 import { compose, withState, withHandlers } from 'recompose';
 
 import { FormAutorisation } from '../FormAutorisation';
@@ -17,14 +17,20 @@ import { ButtonList } from '../ButtonList';
 //     }
 // };
 
-const Content = connect(null, null)(() => (
-    <div className='autorisation-content'>
-        <FormAutorisation/>
-        <ButtonList/>
-    </div>
-));
+const Content = ({ history }) => {
+    console.log(history);
+
+    return (
+        <div className='autorisation-content'>
+            <FormAutorisation/>
+            <ButtonList history={history}/>
+        </div>
+    );
+};
+
 
 Content.propTypes = {
+    history: PropTypes.object.isRequired
 };
 
 export default compose(

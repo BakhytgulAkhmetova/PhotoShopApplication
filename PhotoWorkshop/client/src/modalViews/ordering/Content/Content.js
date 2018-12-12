@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 
 import { Form } from '../Form';
 import { ButtonList } from '../ButtonList';
-import { order } from '../../data';
-import { getFormatList } from '../../../../store/format/asyncActions';
-import { getMaterialList } from '../../../../store/material/asyncActions';
-import { getServiceAdditionalList } from '../../../../store/serviceAdditional/asyncActions';
-import { getServicePhotoDocumentList } from '../../../../store/servicePhotoDocument/asyncActions';
-import { getServicePhotoShootList } from '../../../../store/servicePhotoShoot/asyncActions';
+import { order } from '../data';
+import { getFormatList } from '../../../store/format/asyncActions';
+import { getMaterialList } from '../../../store/material/asyncActions';
+import { getServiceAdditionalList } from '../../../store/serviceAdditional/asyncActions';
+import { getServicePhotoDocumentList } from '../../../store/servicePhotoDocument/asyncActions';
+import { getServicePhotoShootList } from '../../../store/servicePhotoShoot/asyncActions';
 
 const mapStateToProps = (state) => {
     return {

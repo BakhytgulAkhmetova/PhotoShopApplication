@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
-import { ContentPage } from './components/ContentPage';
+import { Header } from './Header';
+import { Footer } from './Footer';
+import { ContentPage } from './ContentPage';
 
 const Customer = () => {
     return (<div>

@@ -6,9 +6,9 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
-import { OrderTable } from '../../../../components/OrderTable';
-import { Content } from '../../../../modalViews/ordering/components/Content';
-import { fillContent, fillHeader, changeStyle, openModal } from '../../../../store/modal/actionCreators';
+import { OrderTable } from '../../../components/OrderTable';
+import { Content } from '../../../modalViews/ordering/Content';
+import { fillContent, fillHeader, changeStyle, openModal } from '../../../store/modal/actionCreators';
 
 import './ContentPage.scss';
 
