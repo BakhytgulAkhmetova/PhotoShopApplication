@@ -11,65 +11,57 @@ const styles = theme => ({
     formRegistration: {
         margin: 'auto',
         width: '480px'
-    },
-    errorMessage: {
-        color: 'red',
-        fontSize: '14px',
-        textTransform: 'lowercase'
     }
 });
 
 const FormRegistration = ({
     classes,
-    registrationForm,
-    onChangeForm }) => {
-    const errors = Object.keys(registrationForm).filter((key) => (registrationForm[key].errors
-    && registrationForm[key].errors.length));
-
+    customer,
+    onChangeCustomer }) => {
     return (
         <form autoComplete='off' className={classes.formRegistration}>
             <TextField
                 required
-                onChange={onChangeForm}
+                onChange={onChangeCustomer}
                 name='firstName'
                 label='FirstName'
                 className={classes.textField}
-                value={registrationForm.firstName.value}
+                value={customer.firstName}
                 margin='normal'
                 variant='filled'/>
             <TextField
                 required
-                onChange={onChangeForm}
+                onChange={onChangeCustomer}
                 name='lastName'
                 label='LastName'
-                value={registrationForm.lastName.value}
+                value={customer.lastName}
                 className={classes.textField}
                 margin='normal'
                 variant='filled'/>
             <TextField
                 required
-                onChange={onChangeForm}
+                onChange={onChangeCustomer}
                 name='phone'
                 label='Phone'
-                value={registrationForm.phone.value}
+                value={customer.phone}
                 className={classes.textField}
                 margin='normal'
                 variant='filled'/>
             <TextField
                 required
-                onChange={onChangeForm}
+                onChange={onChangeCustomer}
                 name='address'
                 label='Address'
-                value={registrationForm.address.value}
+                value={customer.address}
                 className={classes.textField}
                 margin='normal'
                 variant='filled'/>
             <TextField
                 required
-                onChange={onChangeForm}
+                onChange={onChangeCustomer}
                 name='login'
                 label='Login'
-                value={registrationForm.login.value}
+                value={customer.login}
                 className={classes.textField}
                 type='email'
                 autoComplete='email'
@@ -77,33 +69,23 @@ const FormRegistration = ({
                 variant='filled'/>
             <TextField
                 required
-                onChange={onChangeForm}
+                onChange={onChangeCustomer}
                 name='password'
                 label='Password'
-                value={registrationForm.password.value}
+                value={customer.password}
                 className={classes.textField}
                 type='password'
                 autoComplete='current-password'
                 margin='normal'
                 variant='filled'/>
-            {errors.map((key, index) => (
-                <div key={key + index} > {key} :
-                    {registrationForm[key].errors.map((er, num) => (
-                        <div
-                            key={er + num}
-                            className={classes.errorMessage}>
-                            {er}</div>
-                    ))}
-                </div>
-            ))}
         </form>
     );
 };
 
 FormRegistration.propTypes = {
     classes: PropTypes.object.isRequired,
-    registrationForm: PropTypes.object.isRequired,
-    onChangeForm: PropTypes.func.isRequired
+    customer: PropTypes.object.isRequired,
+    onChangeCustomer: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(FormRegistration);

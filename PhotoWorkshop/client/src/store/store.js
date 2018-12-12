@@ -20,4 +20,3 @@ export default () => {
 
     return { store, persistor };
 };
-// const store = createStore(rootReducer, applyMiddleware(thunk));

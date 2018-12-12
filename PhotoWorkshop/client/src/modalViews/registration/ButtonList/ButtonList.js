@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch, { customer, history }) => {
     };
 };
 
-const ButtonList = ({ onCancel, onRegistrate, classes }) => [<Button
+const ButtonList = ({ onCancel, onRegistrate, classes, isValidForm }) => [<Button
     key='cancel'
     onClick={onCancel}
     className={classes.buttonLeft}
@@ -32,6 +32,7 @@ const ButtonList = ({ onCancel, onRegistrate, classes }) => [<Button
 cancel </Button>, <Button
     key='registration'
     onClick={onRegistrate}
+    disabled={isValidForm}
     className={classes.buttonRight}
     variant='contained' size='medium' color='primary'>
 ok </Button>];

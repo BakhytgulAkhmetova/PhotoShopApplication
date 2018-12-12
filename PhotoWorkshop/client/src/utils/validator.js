@@ -44,7 +44,7 @@ export class Validator {
     }
 
     hasErrors = () => {
-        return this.listErrors.length !== 0;
+        return this.listErrors.some(el => el.msgs.length);
     }
 
     cleanListErrors = () => {
