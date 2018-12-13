@@ -8,10 +8,6 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { withStyles } from '@material-ui/core/styles';
-import { compose } from 'recompose';
-import { withRouter } from 'react-router-dom';
-
-// import { auth } from '../../../app';
 
 const styles = theme => ({
     root: {
@@ -26,7 +22,7 @@ const styles = theme => ({
     }
 });
 
-class MenuListComposition extends React.Component {
+class MenuCustomer extends React.Component {
   state = {
       open: false
   };
@@ -44,7 +40,7 @@ class MenuListComposition extends React.Component {
   };
 
   render() {
-      const { classes } = this.props;
+      const { classes, fullName } = this.props;
       const { open } = this.state;
 
       return (
@@ -56,7 +52,7 @@ class MenuListComposition extends React.Component {
                   aria-owns={open ? 'menu-list-grow' : undefined}
                   className={classes.appBarButton}
                   onClick={this.handleToggle}>
-                  Name
+                  {fullName || 'customer'}
               </Button>
               <Popper
                   open={open} anchorEl={this.anchorEl} transition
@@ -72,9 +68,7 @@ class MenuListComposition extends React.Component {
                                   <MenuList>
                                       <MenuItem onClick={this.handleClose}>Main services info</MenuItem>
                                       <MenuItem
-                                          onClick={() => {
-                                              //   auth.signout(() => history.push('/'));
-                                          }}>Logout</MenuItem>
+                                          onClick={() => {}}>Logout</MenuItem>
                                   </MenuList>
                               </ClickAwayListener>
                           </Paper>
@@ -86,11 +80,8 @@ class MenuListComposition extends React.Component {
   }
 }
 
-MenuListComposition.propTypes = {
+MenuCustomer.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default compose(
-    withRouter,
-    withStyles(styles)
-)(MenuListComposition);
+export default withStyles(styles)(MenuCustomer);

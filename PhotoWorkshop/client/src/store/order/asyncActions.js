@@ -1,11 +1,10 @@
-import { addCustomerFetch } from '../../api/format';
-import { addCustomerRequest, addCustomerSuccess, addCustomerFailure } from './actionCreators';
+import { getCustomerOrderListFetch } from '../../api/order';
+import { getCustomerOrderListRequest, getCustomerOrderListSuccess } from './actionCreators';
 
-export  const addCustomer = (payload) => {
+export  const getCustomerOrderList = (payload) => {
     return dispatch => {
-        dispatch(addCustomerRequest(payload));
-        addCustomerFetch()
-            .then(json => dispatch(addCustomerSuccess(json)))
-            .catch(error => dispatch(addCustomerFailure(error)));
+        dispatch(getCustomerOrderListRequest(payload));
+        getCustomerOrderListFetch()
+            .then(json => dispatch(getCustomerOrderListSuccess(json)));
     };
 };

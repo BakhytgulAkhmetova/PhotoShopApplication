@@ -6,6 +6,12 @@ async function getCustomerList(sqlConfig) {
     return result.recordset;
 }
 
+async function getLastCustomer(sqlConfig) {
+    const pool = await new sql.ConnectionPool(sqlConfig).connect();
+    const result = await pool.request().execute('GetLastCustomer');
+    return result.recordset;
+}
+
 async function getCustomerById(sqlConfig, id) {
     const pool = await new sql.ConnectionPool(sqlConfig).connect();
     const result =  await pool.request().input('ID', sql.Int, id).execute('GetCustomerById');
@@ -14,5 +20,6 @@ async function getCustomerById(sqlConfig, id) {
 
 module.exports = { 
     getCustomerList,
-    getCustomerById
+    getCustomerById,
+    getLastCustomer
  };

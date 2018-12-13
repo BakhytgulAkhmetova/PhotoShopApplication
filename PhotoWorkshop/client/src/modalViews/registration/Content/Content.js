@@ -24,7 +24,6 @@ const handlers = {
         const field = event.target.name;
         const value = validate(field, event.target.value);
         const hasErrors = validator.validate(registrationForm);
-        console.log(validator.listErrors);
 
         changeRegistrationForm({ ...registrationForm, [field]: value, isDisabled: { value: hasErrors } });
     }

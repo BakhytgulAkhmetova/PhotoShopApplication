@@ -1,20 +1,13 @@
 import * as actions from './actions';
 
-export const getFormatsRequest = () => {
-    return { type: actions.GET_FORMAT_LIST_REQUEST };
+export const getCustomerOrderListRequest = () => {
+    return { type: actions.GET_CUSTOMER_ORDER_LIST_REQUEST };
 };
 
 
-export const getFormatsSuccess = (payload) => {
+export const getCustomerOrderListSuccess = (payload) => {
     return {
-        type: actions.GET_FORMAT_LIST_SUCCESS,
-        payload
-    };
-};
-
-export const getFormatsFailure = (payload) => {
-    return {
-        type: actions.GET_FORMAT_LIST_FAILURE,
+        type: actions.GET_CUSTOMER_ORDER_LIST_SUCCESS,
         payload
     };
 };

@@ -1,11 +1,13 @@
 export default {
-    customer: {
+    current: {
         firstName: '',
         lastName: '',
         phone: '',
         address: '',
         login: '',
-        password: ''
+        password: '',
+        id: -1
     },
+    list: [],
     isFetching: false
 };

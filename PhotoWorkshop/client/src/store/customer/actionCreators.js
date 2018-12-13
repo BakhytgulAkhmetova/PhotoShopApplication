@@ -1,22 +1,37 @@
-import * as actions from './actions';
+import * as type from './actions';
 
 export const addCustomerRequest = () => {
-    return {
-        type: actions.ADD_CUSTOMER_REQUEST
-    };
+    return { type: type.ADD_CUSTOMER_REQUEST };
 };
-
 
 export const addCustomerSuccess = (payload) => {
     return {
-        type: actions.ADD_CUSTOMER_SUCCESS,
+        type: type.ADD_CUSTOMER_SUCCESS,
         payload
     };
 };
 
 export const addCustomerFailure = (payload) => {
     return {
-        type: actions.ADD_CUSTOMER_FAILURE,
+        type: type.ADD_CUSTOMER_FAILURE,
+        payload
+    };
+};
+
+export const getLastCustomerRequest = () => {
+    return { type: type.GET_LAST_CUSTOMER_REQUEST };
+};
+
+export const getLastCustomerSuccess = (payload) => {
+    return {
+        type: type.GET_LAST_CUSTOMER_SUCCESS,
+        payload
+    };
+};
+
+export const getLastCustomerFailure = (payload) => {
+    return {
+        type: type.GET_LAST_CUSTOMER_FAILURE,
         payload
     };
 };

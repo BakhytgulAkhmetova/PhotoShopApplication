@@ -1,9 +1,13 @@
-const { getOrderList, getOrderlById } = require('../query/order');
+const { getOrderList, getOrderlById, getOrderListByCustomerId } = require('../query/order');
 const { addOrder, updateOrder, deleteOrder } = require('../mutation/order');
 
 const orderRoutes = (app, sqlConfig) => {
     app.get('/orders', async function (req, res) {
         res.send(await getOrderList(sqlConfig));
+    });
+
+    app.get('/orderList/:id', async function (req, res) {
+        res.send(await getOrderListByCustomerId(sqlConfig, req.params.id));
     });
 
     app.get('/order/:id', async function (req, res) {

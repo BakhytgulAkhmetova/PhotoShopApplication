@@ -1,9 +1,13 @@
-const { getCustomerList, getCustomerById } = require('../query/customer');
+const { getCustomerList, getCustomerById, getLastCustomer } = require('../query/customer');
 const { addCustomer, updateCustomer, deleteCustomer } = require('../mutation/customer');
 
 const customerRoutes = (app, sqlConfig) => {
     app.get('/customers', async function (req, res) {
         res.send(await getCustomerList(sqlConfig));
+    });
+
+    app.get('/customer/last', async function (req, res) {
+        res.send(await getLastCustomer(sqlConfig));
     });
 
     app.get('/customer/:id', async function (req, res) {

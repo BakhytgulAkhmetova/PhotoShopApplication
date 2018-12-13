@@ -1,17 +1,16 @@
 import { default as orderInitialState } from './initilalState';
-// import * as types from './actions';
+import * as types from './actions';
 
 export const order = (state = orderInitialState, action) => {
     switch (action.type) {
-        // case types.ADD_CUSTOMER_REQUEST:
-        //     return state;
-        // case types.ADD_CUSTOMER_SUCCESS:
-        //     return  {
-        //         ...state,
-        //         customerList: state.customerList.concat([action.payload])
-        //     };
-        // case types.ADD_CUSTOMER_FAILURE:
-        //     return state;
+        case types.GET_CUSTOMER_ORDER_LIST_REQUEST:
+            return { ...state, isLoading: !state.isLoading };
+
+        case types.GET_CUSTOMER_ORDER_LIST_SUCCESS:
+            return  {
+                ...state,
+                orderCustomerList: action.payload
+            };
         default:
             return state;
     }
