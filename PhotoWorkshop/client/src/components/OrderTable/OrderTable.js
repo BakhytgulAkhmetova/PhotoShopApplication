@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 
 import { THead } from '../THead';
 import { TBody } from '../TBody';
@@ -29,38 +30,38 @@ class OrderTable extends React.Component {
         }
     }
 
-  onHandleChangePage = (event, page) => {
-      this.setState({ page });
-  }
+    onHandleChangePage = (event, page) => {
+        this.setState({ page });
+    }
 
-  onHandleChangeRowsPerPage = event => {
-      this.setState({ rowsPerPage: event.target.value });
-  }
+    onHandleChangeRowsPerPage = event => {
+        this.setState({ rowsPerPage: event.target.value });
+    }
 
-  render() {
-      const { classes } = this.props;
-      const { rows, rowsPerPage, page } = this.state;
+    render() {
+        const { classes } = this.props;
+        const { rows, rowsPerPage, page } = this.state;
 
-      return (
-          <Paper className={classes.root}>
-              <div className={classes.tableWrapper}>
-                  <Table className={classes.table}>
-                      <THead/>
-                      <TBody
-                          rows={rows}
-                          rowsPerPage={rowsPerPage}
-                          page={page}/>
-                      <TFoot
-                          rows={rows}
-                          rowsPerPage={rowsPerPage}
-                          page={page}
-                          handleChangePage={this.onHandleChangePage}
-                          handleChangeRowsPerPage={this.onHandleChangeRowsPerPage}/>
-                  </Table>
-              </div>
-          </Paper>
-      );
-  }
+        return (
+            <Paper className={classes.root}>
+                <div className={classes.tableWrapper}>
+                    <Table className={classes.table}>
+                        <THead/>
+                        <TBody
+                            rows={rows}
+                            rowsPerPage={rowsPerPage}
+                            page={page}/>
+                        <TFoot
+                            rows={rows}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            handleChangePage={this.onHandleChangePage}
+                            handleChangeRowsPerPage={this.onHandleChangeRowsPerPage}/>
+                    </Table>
+                </div>
+            </Paper>
+        );
+    }
 }
 
 OrderTable.propTypes = {
@@ -68,4 +69,7 @@ OrderTable.propTypes = {
     data: PropTypes.array.isRequired
 };
 
-export default connect(mapStateToProps, null)(withStyles(styles)(OrderTable));
+export default compose(
+    connect(mapStateToProps, null),
+    withStyles(styles)
+)(OrderTable);

@@ -5,12 +5,7 @@ import TableRow from '@material-ui/core/TableRow';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
-    head: {
-        backgroundColor: '#C5CAE9',
-        color: '#000000'
-    }
-});
+import { styles } from './styles';
 
 const THead = ({ classes }) => {
     return (<TableHead>

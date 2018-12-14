@@ -3,9 +3,10 @@ const bcrypt = require('bcrypt');
 
 async function addCustomer(sqlConfig, customer) {
     const saltRounds = Math.random();
-    const pool = await new sql.ConnectionPool(sqlConfig).connect();
     const { firstName, lastName, phone, address, login, password } = customer;
     const hash = bcrypt.hashSync(password.value, saltRounds);
+    
+    const pool = await new sql.ConnectionPool(sqlConfig).connect();
     return await pool.request()
     .input('FIRSTNAME', sql.NVarChar(50), firstName.value)
     .input('LASTNAME', sql.NVarChar(50), lastName.value)

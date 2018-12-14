@@ -10,6 +10,7 @@ import { getCustomerByLoginPassword } from '../../../store/customer/asyncActions
 import { Content } from '../../registration/Content';
 import { authenticate } from '../../../store/authentication/actionCreators';
 import { closeModal } from '../../../store/modal/actionCreators';
+import { styles } from './styles';
 
 import './ButtonsAutorisation.scss';
 
@@ -22,7 +23,6 @@ const mapDispatchToProps = (dispatch, { history, authenticationForm }) => ({
     onSignIn: async () => {
         const { login, password } = authenticationForm;
         const authCusotmer = await dispatch(getCustomerByLoginPassword(login, password));
-        console.log(authCusotmer);
 
         if (authCusotmer) {
             dispatch(authenticate());
@@ -32,13 +32,6 @@ const mapDispatchToProps = (dispatch, { history, authenticationForm }) => ({
         history.push('/customer');
     }
 });
-
-const styles = theme => ({
-    button: {
-        margin: '5px 15px'
-    }
-});
-
 
 const ButtonList = ({ onOpenRegistration, onSignIn, classes }) => [<Button
     key='cancel'

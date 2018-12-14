@@ -12,9 +12,7 @@ import { styles } from './styles';
 
 const mapDispatchToProps = (dispatch, { customer, history }) => {
     return {
-        onCancel: () => {
-            dispatch(closeModal());
-        },
+        onCancel: () => dispatch(closeModal()),
         onRegistrate: async () => {
             // const customeDispatch = await Object.keys(customer).map(k => [k, customer[k].value]);
             // debugger;
@@ -22,7 +20,6 @@ const mapDispatchToProps = (dispatch, { customer, history }) => {
             // const tt = await customeDispatch.reduce((o, arr) =>
             //     (Object.defineProperty(o, arr[0], { value: arr[1] })), {});
             // console.log(tt);
-
             await dispatch(addCustomer(customer));
             dispatch(authenticate());
             dispatch(closeModal());

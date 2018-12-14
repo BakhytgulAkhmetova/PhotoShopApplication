@@ -10,13 +10,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onClose: () => {
-        dispatch(closeModal());
-    }
+    onClose: () => dispatch(closeModal())
 });
 
 
-const ModalProvider = connect(mapStateToProps, mapDispatchToProps)(({ modal, onClose }) => {
+const ModalProvider = ({ modal, onClose }) => {
     return (
         <Modal
             onClose={onClose}
@@ -28,11 +26,11 @@ const ModalProvider = connect(mapStateToProps, mapDispatchToProps)(({ modal, onC
             </div>
         </Modal>
     );
-});
+};
 
 ModalProvider.propTypes = {
     modal: PropTypes.object.isRequired,
     onClose: PropTypes.func.isRequired
 };
 
-export default ModalProvider;
+export default connect(mapStateToProps, mapDispatchToProps)(ModalProvider);

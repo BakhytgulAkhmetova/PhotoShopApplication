@@ -6,68 +6,67 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
+import { compose, withHandlers } from 'recompose';
 
-const actionsStyles = theme => ({
-    root: {
-        flexShrink: 0,
-        color: theme.palette.text.secondary,
-        marginLeft: theme.spacing.unit * 2.5
+import { styles } from './styles';
+
+const handlers = {
+    handleFirstPageButtonClick: props => event => {
+        props.onChangePage(event, 0);
+    },
+
+    handleBackButtonClick: props => event => {
+        props.onChangePage(event, this.props.page - 1);
+    },
+
+    handleNextButtonClick: props => event => {
+        props.onChangePage(event, this.props.page + 1);
+    },
+
+    handleLastPageButtonClick: props => event => {
+        props.onChangePage(
+            event,
+            Math.max(0, Math.ceil(this.props.count / this.props.rowsPerPage) - 1),
+        );
     }
-});
+};
 
-class TablePaginationActions extends React.Component {
-  handleFirstPageButtonClick = event => {
-      this.props.onChangePage(event, 0);
-  };
-
-  handleBackButtonClick = event => {
-      this.props.onChangePage(event, this.props.page - 1);
-  };
-
-  handleNextButtonClick = event => {
-      this.props.onChangePage(event, this.props.page + 1);
-  };
-
-  handleLastPageButtonClick = event => {
-      this.props.onChangePage(
-          event,
-          Math.max(0, Math.ceil(this.props.count / this.props.rowsPerPage) - 1),
-      );
-  };
-
-  render() {
-      const { classes, count, page, rowsPerPage, theme } = this.props;
-
-      return (
-          <div className={classes.root}>
-              <IconButton
-                  onClick={this.handleFirstPageButtonClick}
-                  disabled={page === 0}
-                  aria-label='First Page'>
-                  {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-              </IconButton>
-              <IconButton
-                  onClick={this.handleBackButtonClick}
-                  disabled={page === 0}
-                  aria-label='Previous Page'>
-                  {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-              </IconButton>
-              <IconButton
-                  onClick={this.handleNextButtonClick}
-                  disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                  aria-label='Next Page'>
-                  {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-              </IconButton>
-              <IconButton
-                  onClick={this.handleLastPageButtonClick}
-                  disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                  aria-label='Last Page'>
-                  {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-              </IconButton>
-          </div>
-      );
-  }
-}
+const TablePaginationActions  = ({
+    classes, count, page, rowsPerPage, theme,
+    handleFirstPageButtonClick,
+    handleBackButtonClick,
+    handleNextButtonClick,
+    handleLastPageButtonClick
+}) => {
+    return (
+        <div className={classes.root}>
+            <IconButton
+                onClick={handleFirstPageButtonClick}
+                disabled={page === 0}
+                aria-label='First Page'>
+                {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+            </IconButton>
+            <IconButton
+                onClick={handleBackButtonClick}
+                disabled={page === 0}
+                aria-label='Previous Page'>
+                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+            </IconButton>
+            <IconButton
+                onClick={handleNextButtonClick}
+                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                aria-label='Next Page'>
+                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+            </IconButton>
+            <IconButton
+                onClick={handleLastPageButtonClick}
+                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                aria-label='Last Page'>
+                {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+            </IconButton>
+        </div>
+    );
+};
 
 TablePaginationActions.propTypes = {
     classes: PropTypes.object.isRequired,
@@ -75,11 +74,17 @@ TablePaginationActions.propTypes = {
     onChangePage: PropTypes.func.isRequired,
     page: PropTypes.number.isRequired,
     rowsPerPage: PropTypes.number.isRequired,
-    theme: PropTypes.object.isRequired
+    theme: PropTypes.object.isRequired,
+    handleFirstPageButtonClick : PropTypes.func.isRequired,
+    handleBackButtonClick: PropTypes.func.isRequired,
+    handleNextButtonClick: PropTypes.func.isRequired,
+    handleLastPageButtonClick: PropTypes.func.isRequired
 };
 
-const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: true })(
+const TablePaginationActionsWrapped = withStyles(styles, { withTheme: true })(
     TablePaginationActions
 );
 
-export default TablePaginationActionsWrapped;
+export default compose(
+    withHandlers(handlers)
+)(TablePaginationActionsWrapped);

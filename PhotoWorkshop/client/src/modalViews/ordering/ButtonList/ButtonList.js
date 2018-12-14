@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 // import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import { styles } from './styles';
 
 // import { closeModal } from '../../../../store/modal/actionCreators';
 
@@ -13,17 +14,6 @@ import { withStyles } from '@material-ui/core/styles';
 //         dispatch(closeModal());
 //     }
 // });
-
-const styles = theme => ({
-    buttonLeft: {
-        margin: '5px 15px',
-        width: '130px'
-    },
-    buttonRight: {
-        marginLeft: '120px',
-        width: '130px'
-    }
-});
 
 const ButtonList = ({ onCancel, onRegistrate, classes }) => [<Button
     key='cancel'
