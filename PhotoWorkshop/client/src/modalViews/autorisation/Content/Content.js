@@ -1,39 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
 import { compose, withState, withHandlers } from 'recompose';
 
 import { FormAutorisation } from '../FormAutorisation';
 import { ButtonList } from '../ButtonList';
-// import { emptyCustomer } from '../../../../store/customer/initilalState';
+import { emptyAuthForm } from '../data';
 
-// import './Content.scss';
+import './Content.scss';
 
-// const handlers = {
-//     onChangeCustomer: ({ customer, changeCustomer }) => event => {
-//         const field = event.target.name;
+const handlers = {
+    onChangeAuthForm: ({ authenticationForm, changeAuthenticationForm }) => event => {
+        const field = event.target.name;
 
-//         changeCustomer({ ...customer, [field]: event.target.value });
-//     }
-// };
+        changeAuthenticationForm({ ...authenticationForm, [field]: event.target.value });
+    }
+};
 
-const Content = ({ history }) => {
-    console.log(history);
-
+const Content = ({
+    authenticationForm,
+    history,
+    onChangeAuthForm
+}) => {
     return (
         <div className='autorisation-content'>
-            <FormAutorisation/>
-            <ButtonList history={history}/>
+            <FormAutorisation
+                onChangeAuthForm={onChangeAuthForm}
+                authenticationForm={authenticationForm}/>
+            <ButtonList
+                authenticationForm={authenticationForm}
+                history={history}/>
         </div>
     );
 };
 
 
 Content.propTypes = {
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    authenticationForm: PropTypes.object.isRequired,
+    onChangeAuthForm: PropTypes.func.isRequired
 };
 
 export default compose(
-    withState('customer', 'changeCustomer', {}),
-    withHandlers(),
+    withState('authenticationForm', 'changeAuthenticationForm', emptyAuthForm),
+    withHandlers(handlers),
 )(Content);

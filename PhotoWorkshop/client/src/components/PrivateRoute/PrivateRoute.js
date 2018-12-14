@@ -8,7 +8,6 @@ const mapStateToProps = (state) => ({
 });
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-    console.log(rest);
     return (
         <Route
             {...rest}

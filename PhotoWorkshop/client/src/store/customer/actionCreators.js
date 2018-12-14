@@ -35,3 +35,14 @@ export const getLastCustomerFailure = (payload) => {
         payload
     };
 };
+
+export const getCustomerByLoginPasswordRequest = () => {
+    return { type: type.GET_CUSTOMER_BY_LOGIN_PASSWORD_REQUEST };
+};
+
+export const getCustomerByLoginPasswordSuccess = (payload) => {
+    return {
+        type: type.GET_CUSTOMER_BY_LOGIN_PASSWORD_SUCCESS,
+        payload
+    };
+};

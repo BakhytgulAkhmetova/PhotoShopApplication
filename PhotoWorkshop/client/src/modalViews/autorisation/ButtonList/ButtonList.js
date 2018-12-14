@@ -6,15 +6,30 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
 import { fillHeader, fillContent, changeStyle } from '../../../store/modal/actionCreators';
+import { getCustomerByLoginPassword } from '../../../store/customer/asyncActions';
 import { Content } from '../../registration/Content';
+import { authenticate } from '../../../store/authentication/actionCreators';
+import { closeModal } from '../../../store/modal/actionCreators';
 
 import './ButtonsAutorisation.scss';
 
-const mapDispatchToProps = (dispatch, { history }) => ({
+const mapDispatchToProps = (dispatch, { history, authenticationForm }) => ({
     onOpenRegistration: () => {
         dispatch(fillHeader(<h1 className='capture-registration'>Registration</h1>));
         dispatch(fillContent(<Content history={history}/>));
         dispatch(changeStyle('modal-registration'));
+    },
+    onSignIn: async () => {
+        const { login, password } = authenticationForm;
+        const authCusotmer = await dispatch(getCustomerByLoginPassword(login, password));
+        console.log(authCusotmer);
+
+        if (authCusotmer) {
+            dispatch(authenticate());
+        }
+
+        dispatch(closeModal());
+        history.push('/customer');
     }
 });
 

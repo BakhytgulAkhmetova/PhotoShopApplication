@@ -2,7 +2,6 @@ const sql = require('mssql/msnodesqlv8');
 const bcrypt = require('bcrypt');
 
 async function addCustomer(sqlConfig, customer) {
-    console.log(customer);
     const saltRounds = Math.random();
     const pool = await new sql.ConnectionPool(sqlConfig).connect();
     const { firstName, lastName, phone, address, login, password } = customer;

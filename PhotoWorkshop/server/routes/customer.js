@@ -1,4 +1,4 @@
-const { getCustomerList, getCustomerById, getLastCustomer } = require('../query/customer');
+const { getCustomerList, getCustomerById, getLastCustomer, getCustomerByLoginPassword } = require('../query/customer');
 const { addCustomer, updateCustomer, deleteCustomer } = require('../mutation/customer');
 
 const customerRoutes = (app, sqlConfig) => {
@@ -8,6 +8,10 @@ const customerRoutes = (app, sqlConfig) => {
 
     app.get('/customer/last', async function (req, res) {
         res.send(await getLastCustomer(sqlConfig));
+    });
+
+    app.get('/customer/:login/:password', async function (req, res) {
+        res.send(await getCustomerByLoginPassword(sqlConfig, req.params.login, req.params.password));
     });
 
     app.get('/customer/:id', async function (req, res) {

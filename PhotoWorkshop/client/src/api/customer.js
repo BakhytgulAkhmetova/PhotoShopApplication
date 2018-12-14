@@ -11,3 +11,9 @@ export const getLastCustomerFetch = () => {
     return fetch('http://localhost:4000/customer/last')
         .then(response => response.json());
 };
+
+export const getCustomerByLoginPasswordFetch = (login, password) => {
+    return fetch(`http://localhost:4000/customer/${login}/${password}`)
+        .then(response => response.json())
+        .catch(() => null);
+};
