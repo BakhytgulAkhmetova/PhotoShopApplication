@@ -5,8 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { compose } from 'recompose';
 
 import { closeModal } from '../../../store/modal/actionCreators';
-import {  authenticate } from '../../../store/authentication/actionCreators';
-import { addCustomer } from '../../../store/customer/asyncActions';
+import {  authenticate, registrate } from '../../../store/authentication/actionCreators';
+import { addCustomer, getLastCustomer } from '../../../store/customer/asyncActions';
 
 import { styles } from './styles';
 
@@ -14,14 +14,10 @@ const mapDispatchToProps = (dispatch, { customer, history }) => {
     return {
         onCancel: () => dispatch(closeModal()),
         onRegistrate: async () => {
-            // const customeDispatch = await Object.keys(customer).map(k => [k, customer[k].value]);
-            // debugger;
-
-            // const tt = await customeDispatch.reduce((o, arr) =>
-            //     (Object.defineProperty(o, arr[0], { value: arr[1] })), {});
-            // console.log(tt);
             await dispatch(addCustomer(customer));
             dispatch(authenticate());
+            dispatch(registrate());
+            await dispatch(getLastCustomer());
             dispatch(closeModal());
             history.push('/customer');
         }

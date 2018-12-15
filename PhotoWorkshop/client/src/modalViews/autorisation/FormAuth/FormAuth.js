@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 
 import { styles } from './styles';
 
-const FormAutorisation = ({ classes, onChangeAuthForm, authenticationForm }) =>  {
+const FormAuth = ({ classes, onChangeAuthForm, authenticationForm }) =>  {
     return (
         <form className={classes.formAutorise} autoComplete='off'>
             <TextField
@@ -32,10 +32,10 @@ const FormAutorisation = ({ classes, onChangeAuthForm, authenticationForm }) => 
     );
 };
 
-FormAutorisation.propTypes = {
+FormAuth.propTypes = {
     classes: PropTypes.object.isRequired,
     onChangeAuthForm: PropTypes.func.isRequired,
     authenticationForm: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(FormAutorisation);
+export default withStyles(styles)(FormAuth);

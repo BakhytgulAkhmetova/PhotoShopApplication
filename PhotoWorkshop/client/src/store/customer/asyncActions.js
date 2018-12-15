@@ -5,22 +5,21 @@ import * as action  from './actionCreators';
 import * as actionOrder  from '../order/asyncActions';
 
 export  const addCustomer = (payload) => {
-    return dispatch => {
-        dispatch(action.addCustomerRequest());
-        addCustomerFetch(payload)
-            .then(json => dispatch(action.addCustomerSuccess(json)))
-            .catch(error => dispatch(action.addCustomerFailure(error)));
+    return async dispatch => {
+        await dispatch(action.addCustomerRequest());
+        const res = await addCustomerFetch(payload);
+
+        await dispatch(action.addCustomerSuccess(res));
     };
 };
 
 export  const getLastCustomer = () => {
-    return dispatch => {
-        dispatch(action.getLastCustomerRequest());
-        getLastCustomerFetch()
-            .then(json => {
-                dispatch(action.getLastCustomerSuccess(json));
-                dispatch(actionOrder.getCustomerOrderList());
-            });
+    return async dispatch => {
+        await dispatch(action.getLastCustomerRequest());
+        const res = await getLastCustomerFetch();
+
+        await dispatch(action.getLastCustomerSuccess(res));
+        await dispatch(actionOrder.getCustomerOrderList());
     };
 };
 

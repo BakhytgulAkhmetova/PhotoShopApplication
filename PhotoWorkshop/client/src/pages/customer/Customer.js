@@ -1,24 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, lifecycle } from 'recompose';
+import { compose } from 'recompose';
 import PropTypes from 'prop-types';
 
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { ContentPage } from './ContentPage';
-import { getLastCustomer } from '../../store/customer/asyncActions';
+// import { getLastCustomer } from '../../store/customer/asyncActions';
 
 const mapStateToProps = (state) => ({
+    isRegistrated: state.authentication.isRegistrated,
     customer: state.customer.current,
     orderList: state.order.orderCustomerList
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    getCustomer: () => dispatch(getLastCustomer())
-});
+const mapDispatchToProps = (dispatch, { isRegistrated }) => {
+    // const get = isRegistrated ? () => dispatch(getLastCustomer())
+    //     : ;
+
+    // return {
+    //     getCustomer: get
+    // };
+};
 
 const Customer = ({ customer, orderList }) => {
-    const fullName = `${customer.FirstName  }${  customer.LastName}`;
+    const fullName = `${customer.FirstName  }  ${  customer.LastName[0] || ''}.`;
 
     return (<div>
         <Header fullName={fullName}/>
@@ -34,9 +40,9 @@ Customer.propTypes = {
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
-    lifecycle({
-        componentDidMount() {
-            this.props.getCustomer();
-        }
-    })
+    // lifecycle({
+    //     componentDidMount() {
+    //         debugger;
+    //     }
+    // })
 )(Customer);

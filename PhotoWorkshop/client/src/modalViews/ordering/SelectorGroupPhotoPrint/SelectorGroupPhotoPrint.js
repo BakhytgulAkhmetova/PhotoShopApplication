@@ -6,19 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const styles = theme => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap'
-    },
-    formControl: {
-        margin: theme.spacing.unit,
-        minWidth: 120
-    },
-    selectEmpty: {
-        marginTop: theme.spacing.unit * 2
-    }
-});
+import { styles } from './styles';
 
 class SelectorGroupPhotoPrint extends React.Component {
   state = {
@@ -31,12 +19,13 @@ class SelectorGroupPhotoPrint extends React.Component {
   };
 
   render() {
-      const { classes, disable, formatList, materialList } = this.props;
-
-      console.log(formatList);
+      const { classes, disable, formatList,
+          //   order,
+          //   changeOrder,
+          materialList } = this.props;
 
       return (
-          <div className={classes.root} >
+          <div>
               <FormControl className={classes.formControl}>
                   <InputLabel htmlFor='format-simple'>Format</InputLabel>
                   <Select
@@ -89,6 +78,8 @@ class SelectorGroupPhotoPrint extends React.Component {
 }
 
 SelectorGroupPhotoPrint.propTypes = {
+    order: PropTypes.object.isRequired,
+    changeOrder: PropTypes.isRequired,
     classes: PropTypes.object.isRequired,
     disable: PropTypes.bool.isRequired,
     formatList: PropTypes.array.isRequired,

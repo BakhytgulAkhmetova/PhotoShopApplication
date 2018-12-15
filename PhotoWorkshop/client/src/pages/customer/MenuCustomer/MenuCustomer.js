@@ -8,80 +8,62 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { withStyles } from '@material-ui/core/styles';
+import { compose, withState, withHandlers } from 'recompose';
 
-const styles = theme => ({
-    root: {
-        display: 'flex',
-        marginLeft: '90%'
+import { styles } from './styles';
+
+const handlers = {
+    handleToggle: ({ open, changeOpen }) => event => {
+        changeOpen({ open: !open });
     },
-    paper: {
-        marginRight: theme.spacing.unit * 2
-    },
-    appBarButton: {
-        backgroundColor: '#9FA8DA'
+    handleClose: ({ changeOpen }) => event => {
+        changeOpen(false);
     }
-});
+};
 
-class MenuCustomer extends React.Component {
-  state = {
-      open: false
-  };
-
-  handleToggle = () => {
-      this.setState(state => ({ open: !state.open }));
-  };
-
-  handleClose = event => {
-      if (this.anchorEl.contains(event.target)) {
-          return;
-      }
-
-      this.setState({ open: false });
-  };
-
-  render() {
-      const { classes, fullName } = this.props;
-      const { open } = this.state;
-
-      return (
-          <div className={classes.root}>
-              <Button
-                  buttonRef={node => {
-                      this.anchorEl = node;
-                  }}
-                  aria-owns={open ? 'menu-list-grow' : undefined}
-                  className={classes.appBarButton}
-                  onClick={this.handleToggle}>
-                  {fullName || 'customer'}
-              </Button>
-              <Popper
-                  open={open} anchorEl={this.anchorEl} transition
-                  disablePortal>
-                  {({ TransitionProps, placement }) => (
-                      <Grow
-                          {...TransitionProps}
-                          id='menu-list-grow'
-                          style={{ transformOrigin: placement === 'bottom' ?
-                              'center top' : 'center bottom' }}>
-                          <Paper>
-                              <ClickAwayListener onClickAway={this.handleClose}>
-                                  <MenuList>
-                                      <MenuItem onClick={this.handleClose}>Main services info</MenuItem>
-                                      <MenuItem
-                                          onClick={() => {}}>Logout</MenuItem>
-                                  </MenuList>
-                              </ClickAwayListener>
-                          </Paper>
-                      </Grow>
-                  )}
-              </Popper>
-          </div>
-      );
-  }
-}
+const MenuCustomer = ({ classes, fullName, open,
+    handleToggle,
+    handleClose
+}) => {
+    return (
+        <div className={classes.root}>
+            <Button
+                aria-owns={open ? 'menu-list-grow' : undefined}
+                className={classes.appBarButton}
+                onClick={handleToggle}>
+                {fullName || 'customer'}
+            </Button>
+            <Popper
+                open={open} transition
+                disablePortal>
+                {({ TransitionProps, placement }) => (
+                    <Grow
+                        {...TransitionProps}
+                        id='menu-list-grow'
+                        style={{ transformOrigin: placement === 'bottom' ?
+                            'center top' : 'center bottom' }}>
+                        <Paper>
+                            <ClickAwayListener onClickAway={handleClose}>
+                                <MenuList>
+                                    <MenuItem onClick={handleClose}>Main services info</MenuItem>
+                                    <MenuItem
+                                        onClick={() => {}}>Logout</MenuItem>
+                                </MenuList>
+                            </ClickAwayListener>
+                        </Paper>
+                    </Grow>
+                )}
+            </Popper>
+        </div>
+    );
+};
 
 MenuCustomer.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(MenuCustomer);
+export default compose(
+    withState('open', 'changeOpen', false),
+    withHandlers(handlers),
+    withStyles(styles)
+)(MenuCustomer);

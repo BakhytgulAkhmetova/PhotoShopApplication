@@ -9,10 +9,17 @@ export const authentication = (state = initialStateAuth, action) => {
                 isAuthenticated: !state.isAuthenticated
             };
 
+        case types.REGISTRATE:
+            return {
+                ...state,
+                isRegistrated: !state.isRegistrated
+            };
+
         case types.SIGN_OUT:
             return {
                 ...state,
-                isAuthenticated: !state.isAuthenticated
+                isAuthenticated: !state.isAuthenticated,
+                isRegistrated: !state.isRegistrated
             };
         default:
             return state;

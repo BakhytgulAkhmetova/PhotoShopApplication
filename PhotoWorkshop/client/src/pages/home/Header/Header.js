@@ -15,13 +15,10 @@ import { openModal, fillHeader, fillContent, changeStyle } from '../../../store/
 import { styles } from './styles';
 import './Header.scss';
 
-const mapStateToProps = (state) => {
-    console.log(state);
-    return {
-        modal: state.modal,
-        auth: state.authentication
-    };
-};
+const mapStateToProps = (state) => ({
+    modal: state.modal,
+    auth: state.authentication
+});
 
 const mapDispatchToProps = (dispatch, { history }) =>  ({
     onSignOut: () => {

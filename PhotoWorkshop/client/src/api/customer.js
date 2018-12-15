@@ -7,6 +7,11 @@ export const addCustomerFetch = (customer) => {
         .then(response => response.json());
 };
 
+export const getCustomerByIdFetch = (id) => {
+    return fetch(`http://localhost:4000/customer/${id}`)
+        .then(response => response.json());
+};
+
 export const getLastCustomerFetch = () => {
     return fetch('http://localhost:4000/customer/last')
         .then(response => response.json());

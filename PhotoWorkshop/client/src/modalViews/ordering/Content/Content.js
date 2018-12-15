@@ -5,22 +5,21 @@ import PropTypes from 'prop-types';
 
 import { Form } from '../Form';
 import { ButtonList } from '../ButtonList';
-import { order } from '../data';
+import { emptyOrder } from '../data';
 import { getFormatList } from '../../../store/format/asyncActions';
 import { getMaterialList } from '../../../store/material/asyncActions';
 import { getServiceAdditionalList } from '../../../store/serviceAdditional/asyncActions';
 import { getServicePhotoDocumentList } from '../../../store/servicePhotoDocument/asyncActions';
 import { getServicePhotoShootList } from '../../../store/servicePhotoShoot/asyncActions';
 
-const mapStateToProps = (state) => {
-    return {
-        formatList: state.format.formatList,
-        materialList: state.material.materialList,
-        serviceAdditionalList: state.serviceAdditional.data,
-        servicePhotoDocumentList: state.servicePhotoDocument.data,
-        servicePhotoShootList:  state.servicePhotoShoot.data
-    };
-};
+const mapStateToProps = (state) => ({
+    formatList: state.format.formatList,
+    materialList: state.material.materialList,
+    serviceAdditionalList: state.serviceAdditional.data,
+    servicePhotoDocumentList: state.servicePhotoDocument.data,
+    servicePhotoShootList:  state.servicePhotoShoot.data
+});
+
 
 const mapDispatchToProps = (dispatch) => ({
     getFormat: () => dispatch(getFormatList()),
@@ -31,6 +30,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Content = ({
+    order,
+    changeOrder,
     formatList,
     materialList,
     serviceAdditionalList,
@@ -38,6 +39,8 @@ const Content = ({
     servicePhotoShootList
 }) => (<div>
     <Form
+        order={order}
+        changeOrder={changeOrder}
         servicePhotoDocumentList={servicePhotoDocumentList}
         servicePhotoShootList={servicePhotoShootList}
         serviceAdditionalList={serviceAdditionalList}
@@ -47,6 +50,8 @@ const Content = ({
 </div>);
 
 Content.propTypes = {
+    order: PropTypes.object.isRequired,
+    changeOrder: PropTypes.isRequired,
     formatList: PropTypes.array.isRequired,
     materialList: PropTypes.array.isRequired,
     serviceAdditionalList: PropTypes.array.isRequired,
@@ -68,5 +73,5 @@ export default compose(
             this.props.getServicePhotoShoot();
         }
     }),
-    withState('order', 'changeOrder', order)
+    withState('order', 'changeOrder', emptyOrder)
 )(Content);

@@ -11,16 +11,9 @@ import { SelectorGroupPhotoPrint } from '../SelectorGroupPhotoPrint';
 import { SelectorGroupPhotoShoot } from '../SelectorGroupPhotoShoot';
 import { SelectTarif } from '../SelectTarif';
 
-import './Form.scss';
+import { styles } from './styles';
 
-const styles = theme => ({
-    formControl: {
-        margin: theme.spacing.unit * 3
-    },
-    group: {
-        margin: `${theme.spacing.unit}px 0`
-    }
-});
+import './Form.scss';
 
 class Form extends React.Component {
   state = {
@@ -34,11 +27,16 @@ class Form extends React.Component {
   }
 
   handleChange = event => {
+      const { order, changeOrder } = this.props;
+
       this.setState({ value: event.target.value });
+      changeOrder({ ...order, services: [] });
   };
 
   render() {
       const {
+          order,
+          changeOrder,
           classes,
           formatList,
           materialList,
@@ -57,17 +55,23 @@ class Form extends React.Component {
                       onChange={this.handleChange}>
                       <FormControlLabel value='photoPrint' control={<Radio/>} label='Photo Print' />
                       <SelectorGroupPhotoPrint
+                          order={order}
+                          changeOrder={changeOrder}
                           formatList={formatList}
                           materialList={materialList}
                           disable={value !== 'photoPrint'} />
                       <FormControlLabel value='photoDocument' control={<Radio/>} label='Photo on document' />
                       <SelectorGroupPhotoDoc
+                          order={order}
+                          changeOrder={changeOrder}
                           servicePhotoDocumentList={servicePhotoDocumentList}
                           serviceAdditionalList={serviceAdditionalList}
                           materialList={materialList}
                           disable={value !== 'photoDocument'}/>
                       <FormControlLabel value='photoShoot' control={<Radio />} label='Photo Shoot'/>
                       <SelectorGroupPhotoShoot
+                          order={order}
+                          changeOrder={changeOrder}
                           servicePhotoShootList={servicePhotoShootList}
                           serviceAdditionalList={serviceAdditionalList}
                           disable={value !== 'photoShoot'}/>
@@ -83,6 +87,8 @@ class Form extends React.Component {
 }
 
 Form.propTypes = {
+    order: PropTypes.object.isRequired,
+    changeOrder: PropTypes.isRequired,
     classes: PropTypes.object.isRequired,
     formatList: PropTypes.array.isRequired,
     materialList: PropTypes.array.isRequired,

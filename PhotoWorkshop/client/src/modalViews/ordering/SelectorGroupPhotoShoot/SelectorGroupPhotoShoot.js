@@ -6,19 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const styles = theme => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap'
-    },
-    formControl: {
-        margin: theme.spacing.unit,
-        minWidth: 120
-    },
-    selectEmpty: {
-        marginTop: theme.spacing.unit * 2
-    }
-});
+import { styles } from './styles';
 
 class SelectorGroupPhotoShoot extends React.Component {
   state = {
@@ -31,10 +19,13 @@ class SelectorGroupPhotoShoot extends React.Component {
   };
 
   render() {
-      const { classes, disable, serviceAdditionalList, servicePhotoShootList } = this.props;
+      const { classes, disable, serviceAdditionalList,
+          //   order,
+          //   changeOrder,
+          servicePhotoShootList } = this.props;
 
       return (
-          <div className={classes.root} >
+          <div>
               <FormControl className={classes.formControl}>
                   <InputLabel htmlFor='photoShootType-simple'>Photo shoot</InputLabel>
                   <Select
@@ -81,6 +72,8 @@ class SelectorGroupPhotoShoot extends React.Component {
 }
 
 SelectorGroupPhotoShoot.propTypes = {
+    order: PropTypes.object.isRequired,
+    changeOrder: PropTypes.isRequired,
     classes: PropTypes.object.isRequired,
     disable: PropTypes.bool.isRequired,
     materialList: PropTypes.array.isRequired,

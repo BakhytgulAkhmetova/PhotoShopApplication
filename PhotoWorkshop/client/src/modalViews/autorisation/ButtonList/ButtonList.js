@@ -7,12 +7,13 @@ import { compose } from 'recompose';
 
 import { fillHeader, fillContent, changeStyle } from '../../../store/modal/actionCreators';
 import { getCustomerByLoginPassword } from '../../../store/customer/asyncActions';
+import { getCurrentCustomer } from '../../../store/customer/actionCreators';
 import { Content } from '../../registration/Content';
 import { authenticate } from '../../../store/authentication/actionCreators';
 import { closeModal } from '../../../store/modal/actionCreators';
 import { styles } from './styles';
 
-import './ButtonsAutorisation.scss';
+import './ButtonsAuth.scss';
 
 const mapDispatchToProps = (dispatch, { history, authenticationForm }) => ({
     onOpenRegistration: () => {
@@ -22,12 +23,14 @@ const mapDispatchToProps = (dispatch, { history, authenticationForm }) => ({
     },
     onSignIn: async () => {
         const { login, password } = authenticationForm;
-        const authCusotmer = await dispatch(getCustomerByLoginPassword(login, password));
+        const authCustomer = await dispatch(getCustomerByLoginPassword(login, password));
 
-        if (authCusotmer) {
+        console.log(authCustomer);
+
+        if (authCustomer) {
             dispatch(authenticate());
+            dispatch(getCurrentCustomer(authCustomer));
         }
-
         dispatch(closeModal());
         history.push('/customer');
     }

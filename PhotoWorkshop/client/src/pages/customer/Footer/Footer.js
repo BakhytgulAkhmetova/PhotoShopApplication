@@ -7,9 +7,7 @@ import PhotoCamera  from '@material-ui/icons/PhotoCamera';
 
 import { styles } from '../Footer/styles';
 
-const Footer = (props) => {
-    const { classes } = props;
-
+const Footer = ({ classes }) => {
     return (
         <BottomNavigation
             showLabels

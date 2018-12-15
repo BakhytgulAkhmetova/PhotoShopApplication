@@ -11,12 +11,7 @@ import { Content } from '../../../modalViews/ordering/Content';
 import { fillContent, fillHeader, changeStyle, openModal } from '../../../store/modal/actionCreators';
 
 import './ContentPage.scss';
-
-const styles = theme => ({
-    btnOrder: {
-        border: '1px solid grey'
-    }
-});
+import { styles } from './styles';
 
 const mapDispatchToProps = (dispatch) => ({
     handleClick: () => {

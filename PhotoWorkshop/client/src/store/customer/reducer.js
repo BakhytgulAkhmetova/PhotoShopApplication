@@ -22,6 +22,11 @@ export const customer = (state = customerInitialState, action) => {
                 ...state,
                 current: action.payload[0]
             };
+        case types.GET_CURRENT_CUSTOMER:
+            return  {
+                ...state,
+                current: action.payload
+            };
 
         case types.GET_LAST_CUSTOMER_FAILURE:
             return { ...state, error: action.payload };

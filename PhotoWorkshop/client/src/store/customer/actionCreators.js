@@ -46,3 +46,11 @@ export const getCustomerByLoginPasswordSuccess = (payload) => {
         payload
     };
 };
+
+
+export  const getCurrentCustomer = (payload) => {
+    return {
+        type: type.GET_CURRENT_CUSTOMER,
+        payload
+    };
+};

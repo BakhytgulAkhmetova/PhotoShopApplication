@@ -6,19 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const styles = theme => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap'
-    },
-    formControl: {
-        margin: theme.spacing.unit,
-        minWidth: 120
-    },
-    selectEmpty: {
-        marginTop: theme.spacing.unit * 2
-    }
-});
+import { styles } from './styles';
 
 class SelectorGroupPhotoDoc extends React.Component {
   state = {
@@ -28,14 +16,39 @@ class SelectorGroupPhotoDoc extends React.Component {
   };
 
   handleChange = event => {
-      this.setState({ [event.target.name]: event.target.value });
+      const { order, changeOrder } = this.props;
+      const name = event.target.name;
+      const idService = +event.currentTarget.id;
+      const valueService = event.target.value;
+
+      this.setState({ [name]: valueService });
+      if (!order.services.some(el => el.id === idService)) {
+          changeOrder({ ...order, services: order.services.concat([{
+              id: idService,
+              name }]) });
+      } else {
+          const index = order.services.findIndex(el => el.id === idService);
+          const newServ = order.services.map((el, i) => {
+              const res = i === index  ? { id: idService, name } : el;
+
+              return res;
+          });
+
+          changeOrder({ ...order, services: newServ });
+      }
+
+      console.log(event.currentTarget);
   };
 
   render() {
-      const { classes, disable, serviceAdditionalList, materialList, servicePhotoDocumentList } = this.props;
+      const { classes, disable, serviceAdditionalList,
+          materialList,
+          servicePhotoDocumentList } = this.props;
+
+      console.log(serviceAdditionalList);
 
       return (
-          <div className={classes.root} >
+          <div>
               <FormControl className={classes.formControl}>
                   <InputLabel htmlFor='docTypes-simple'>Document</InputLabel>
                   <Select
@@ -52,7 +65,9 @@ class SelectorGroupPhotoDoc extends React.Component {
                       {
                           servicePhotoDocumentList.map((service) => (
                               <MenuItem
+                                  id={service.ID}
                                   key={service.ID + service.DocumentType}
+                                  name={service.serviceName}
                                   value={service.DocumentType} >{service.DocumentType}</MenuItem>
                           ))
                       }
@@ -72,8 +87,12 @@ class SelectorGroupPhotoDoc extends React.Component {
                           <em>None</em>
                       </MenuItem>
                       {
-                          materialList.map(({ ID, Name }) => (
-                              <MenuItem key={ID + Name} value={Name} >{Name}</MenuItem>
+                          materialList.map(({ ID, Name, serviceName }) => (
+                              <MenuItem
+                                  service={serviceName}
+                                  id={ID}
+                                  key={ID + Name}
+                                  value={Name} >{Name}</MenuItem>
                           ))
                       }
                   </Select>
@@ -93,7 +112,10 @@ class SelectorGroupPhotoDoc extends React.Component {
                       </MenuItem>
                       {
                           serviceAdditionalList.map(({ ID, Name }) => (
-                              <MenuItem key={ID + Name} value={Name} >{Name}</MenuItem>
+                              <MenuItem
+                                  id={ID}
+                                  key={ID + Name}
+                                  value={Name} >{Name}</MenuItem>
                           ))
                       }
                   </Select>
@@ -104,6 +126,8 @@ class SelectorGroupPhotoDoc extends React.Component {
 }
 
 SelectorGroupPhotoDoc.propTypes = {
+    order: PropTypes.object.isRequired,
+    changeOrder: PropTypes.isRequired,
     classes: PropTypes.object.isRequired,
     disable: PropTypes.bool.isRequired,
     materialList: PropTypes.array.isRequired,

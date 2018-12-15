@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { compose, withState, withHandlers } from 'recompose';
 
-import { FormAutorisation } from '../FormAutorisation';
+import { FormAuth } from '../FormAuth';
 import { ButtonList } from '../ButtonList';
 import { emptyAuthForm } from '../data';
 
@@ -22,8 +22,8 @@ const Content = ({
     onChangeAuthForm
 }) => {
     return (
-        <div className='autorisation-content'>
-            <FormAutorisation
+        <div>
+            <FormAuth
                 onChangeAuthForm={onChangeAuthForm}
                 authenticationForm={authenticationForm}/>
             <ButtonList
