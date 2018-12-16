@@ -10,6 +10,7 @@ import { SelectorGroupPhotoDoc } from '../SelectorGroupPhotoDoc';
 import { SelectorGroupPhotoPrint } from '../SelectorGroupPhotoPrint';
 import { SelectorGroupPhotoShoot } from '../SelectorGroupPhotoShoot';
 import { SelectTarif } from '../SelectTarif';
+import { RadioGroup1 } from '../../../components/RadioGroup';
 
 import { styles } from './styles';
 
@@ -49,6 +50,7 @@ class Form extends React.Component {
       return (
           <form className={classes.root}>
               <FormControl className={classes.formControl}>
+                  <RadioGroup1/>
                   <RadioGroup
                       className={classes.group}
                       value={value}

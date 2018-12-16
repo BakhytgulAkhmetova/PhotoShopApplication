@@ -18,7 +18,7 @@ class SelectorGroupPhotoDoc extends React.Component {
   handleChange = event => {
       const { order, changeOrder } = this.props;
       const name = event.target.name;
-      const idService = +event.currentTarget.id;
+      const idService = event.currentTarget.id;
       const valueService = event.target.value;
 
       this.setState({ [name]: valueService });
@@ -37,7 +37,7 @@ class SelectorGroupPhotoDoc extends React.Component {
           changeOrder({ ...order, services: newServ });
       }
 
-      console.log(event.currentTarget);
+      console.log(event.target);
   };
 
   render() {
@@ -45,7 +45,7 @@ class SelectorGroupPhotoDoc extends React.Component {
           materialList,
           servicePhotoDocumentList } = this.props;
 
-      console.log(serviceAdditionalList);
+      // console.log(serviceAdditionalList);
 
       return (
           <div>
@@ -65,7 +65,7 @@ class SelectorGroupPhotoDoc extends React.Component {
                       {
                           servicePhotoDocumentList.map((service) => (
                               <MenuItem
-                                  id={service.ID}
+                                  itemID={service.serviceName}
                                   key={service.ID + service.DocumentType}
                                   name={service.serviceName}
                                   value={service.DocumentType} >{service.DocumentType}</MenuItem>
@@ -90,7 +90,7 @@ class SelectorGroupPhotoDoc extends React.Component {
                           materialList.map(({ ID, Name, serviceName }) => (
                               <MenuItem
                                   service={serviceName}
-                                  id={ID}
+                                  itemID={serviceName}
                                   key={ID + Name}
                                   value={Name} >{Name}</MenuItem>
                           ))
@@ -111,9 +111,9 @@ class SelectorGroupPhotoDoc extends React.Component {
                           <em>None</em>
                       </MenuItem>
                       {
-                          serviceAdditionalList.map(({ ID, Name }) => (
+                          serviceAdditionalList.map(({ ID, Name, serviceName }) => (
                               <MenuItem
-                                  id={ID}
+                                  itemID={serviceName}
                                   key={ID + Name}
                                   value={Name} >{Name}</MenuItem>
                           ))
