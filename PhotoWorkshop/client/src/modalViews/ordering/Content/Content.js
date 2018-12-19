@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { compose, lifecycle,  withState } from 'recompose';
 import PropTypes from 'prop-types';
 
-import { Form } from '../Form';
+// import { Form } from '../Form';
+import { FormOrder } from '../FormOrder';
 import { ButtonList } from '../ButtonList';
 import { emptyOrder } from '../data';
 import { getFormatList } from '../../../store/format/asyncActions';
@@ -19,7 +20,6 @@ const mapStateToProps = (state) => ({
     servicePhotoDocumentList: state.servicePhotoDocument.data,
     servicePhotoShootList:  state.servicePhotoShoot.data
 });
-
 
 const mapDispatchToProps = (dispatch) => ({
     getFormat: () => dispatch(getFormatList()),
@@ -38,7 +38,7 @@ const Content = ({
     servicePhotoDocumentList,
     servicePhotoShootList
 }) => (<div>
-    <Form
+    <FormOrder
         order={order}
         changeOrder={changeOrder}
         servicePhotoDocumentList={servicePhotoDocumentList}
@@ -46,7 +46,7 @@ const Content = ({
         serviceAdditionalList={serviceAdditionalList}
         formatList={formatList}
         materialList={materialList}/>
-    <ButtonList/>
+    <ButtonList order={order}/>
 </div>);
 
 Content.propTypes = {

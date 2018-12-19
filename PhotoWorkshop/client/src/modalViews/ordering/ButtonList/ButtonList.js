@@ -1,19 +1,20 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import { compose } from 'recompose';
 import { styles } from './styles';
 
-// import { closeModal } from '../../../../store/modal/actionCreators';
+import { closeModal } from '../../../../src/store/modal/actionCreators';
 
-// const mapDispatchToProps = (dispatch) => ({
-//     onCancel: () => {
-//         dispatch(closeModal());
-//     },
-//     onRegistrate: async () => {
-//         dispatch(closeModal());
-//     }
-// });
+const mapDispatchToProps = (dispatch) => ({
+    onCancel: () => {
+        dispatch(closeModal());
+    },
+    onRegistrate: async () => {
+        dispatch(closeModal());
+    }
+});
 
 const ButtonList = ({ onCancel, onRegistrate, classes }) => [<Button
     key='cancel'
@@ -27,4 +28,7 @@ cancel </Button>, <Button
     variant='contained' size='medium' color='primary'>
 order </Button>];
 
-export default  withStyles(styles)(ButtonList);
+export default  compose(
+    connect(null, mapDispatchToProps),
+    withStyles(styles)
+)(ButtonList);
