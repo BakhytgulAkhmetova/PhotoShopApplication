@@ -14,11 +14,12 @@ const TBody = ({ rows, rowsPerPage, page }) => {
         <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
                 return (
-                    <TableRow key={row.id}>
+                    <TableRow key={row.ID}>
                         <TableCell component='th' scope='row'>
-                            {row.id}
+                            {row.ID}
                         </TableCell>
-                        <TableCell>{row.status}</TableCell>
+                        <TableCell>{row.Status}</TableCell>
+                        <TableCell>{row.Price}</TableCell>
                     </TableRow>
                 );
             })}

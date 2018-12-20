@@ -8,6 +8,5 @@ export default {
         password: '',
         id: -1
     },
-    list: [],
     isFetching: false
 };

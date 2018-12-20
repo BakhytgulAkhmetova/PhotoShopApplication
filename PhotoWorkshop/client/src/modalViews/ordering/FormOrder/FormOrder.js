@@ -47,8 +47,6 @@ const handlers = {
         // change price
         const serviceList = [serviceAdditionalList, servicePhotoShootList, materialList];
 
-        debugger;
-
         const serVal = serviceList.find(servValues =>
             servValues[0].ServiceName === event.target.name && servValues[0].Price);
 
@@ -129,6 +127,7 @@ const FormOrder = ({
                 }/>
             <SelectGroup
                 disable={false}
+                handleChangeServices={handleChangeServices}
                 selectList={
                     [{ name: 'tarif', optionList: tarifs }]
                 }/>

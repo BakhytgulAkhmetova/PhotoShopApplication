@@ -7,18 +7,21 @@ import { MenuCustomer } from '../MenuCustomer';
 
 import './Header.scss';
 
-const Header = ({ fullName }) => {
+const Header = ({ fullName, handleSignOut }) => {
     return (
         <AppBar position='fixed'>
             <Toolbar>
-                <MenuCustomer fullName={fullName}/>
+                <MenuCustomer
+                    handleSignOut={handleSignOut}
+                    fullName={fullName}/>
             </Toolbar>
         </AppBar>
     );
 };
 
 Header.propTypes = {
-    fullName: PropTypes.string.isRequired
+    fullName: PropTypes.string.isRequired,
+    handleSignOut: PropTypes.func.isRequired
 };
 
 export default  Header;

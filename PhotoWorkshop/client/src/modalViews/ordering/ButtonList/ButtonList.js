@@ -5,18 +5,28 @@ import { withStyles } from '@material-ui/core/styles';
 import { compose } from 'recompose';
 import { styles } from './styles';
 
+import { addOrder, getCustomerOrderList } from '../../../../src/store/order/asyncActions';
 import { closeModal } from '../../../../src/store/modal/actionCreators';
 
-const mapDispatchToProps = (dispatch) => ({
+
+const mapDispatchToProps = (dispatch, { order, customer }) => ({
     onCancel: () => {
         dispatch(closeModal());
     },
-    onRegistrate: async () => {
+    onOrder: async () => {
+        const orderSend = { ...order,
+            services: order.services,
+            customerId: customer.ID,
+            timeRequest: new Date(),
+            price: order.price.sum };
+
+        await dispatch(addOrder(orderSend));
+        await dispatch(getCustomerOrderList(customer.ID));
         dispatch(closeModal());
     }
 });
 
-const ButtonList = ({ onCancel, onRegistrate, classes }) => [<Button
+const ButtonList = ({ onCancel, onOrder, classes }) => [<Button
     key='cancel'
     className={classes.buttonLeft}
     onClick={onCancel}
@@ -24,7 +34,7 @@ const ButtonList = ({ onCancel, onRegistrate, classes }) => [<Button
 cancel </Button>, <Button
     key='registration'
     className={classes.buttonRight}
-    onClick={onRegistrate}
+    onClick={onOrder}
     variant='contained' size='medium' color='primary'>
 order </Button>];
 

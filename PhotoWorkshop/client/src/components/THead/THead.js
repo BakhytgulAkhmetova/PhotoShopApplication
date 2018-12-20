@@ -7,11 +7,18 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { styles } from './styles';
 
+const heads = ['№', 'Status', 'Price'];
+
 const THead = ({ classes }) => {
     return (<TableHead>
         <TableRow>
-            <TableCell className={classes.head}>№</TableCell>
-            <TableCell className={classes.head}>Status</TableCell>
+            {
+                heads.map((h, index) => (
+                    <TableCell
+                        key={h + index}
+                        className={classes.head}>{h}</TableCell>
+                ))
+            }
         </TableRow>
     </TableHead>);
 };

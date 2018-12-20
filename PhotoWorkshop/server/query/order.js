@@ -6,6 +6,12 @@ async function getOrderList(sqlConfig) {
     return result.recordset;
 }
 
+async function getOrderLast(sqlConfig) {
+    const pool = await new sql.ConnectionPool(sqlConfig).connect();
+    const result = await pool.request().execute('GetLastOrder');
+    return result.recordset;
+}
+
 async function getOrderListByCustomerId(sqlConfig, customerId) {
     const pool = await new sql.ConnectionPool(sqlConfig).connect();
     const result = await pool.request().input('ID', sql.Int, customerId).execute('GetOrderListByCustomerId');
@@ -20,6 +26,8 @@ async function getOrderlById(sqlConfig, id) {
 
 module.exports = { 
     getOrderList,
+    getOrderLast,
     getOrderListByCustomerId,
     getOrderlById
  };
+ 

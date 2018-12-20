@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import Paper from '@material-ui/core/Paper';
-import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
 import { THead } from '../THead';
@@ -11,11 +10,6 @@ import { TBody } from '../TBody';
 import { TFoot } from '../TFoot';
 
 import { styles } from './styles';
-
-const mapStateToProps = (state) => ({
-    data: state.order.orderCustomerList
-});
-
 
 class OrderTable extends React.Component {
     state = {
@@ -70,6 +64,5 @@ OrderTable.propTypes = {
 };
 
 export default compose(
-    connect(mapStateToProps, null),
     withStyles(styles)
 )(OrderTable);

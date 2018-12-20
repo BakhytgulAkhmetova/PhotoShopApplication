@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -18,11 +18,16 @@ const handlers = {
     },
     handleClose: ({ changeOpen }) => event => {
         changeOpen(false);
+    },
+    onSignOut: ({ handleSignOut, changeOpen }) => event => {
+        changeOpen(false);
+        handleSignOut.apply(this);
     }
 };
 
 const MenuCustomer = ({ classes, fullName, open,
     handleToggle,
+    onSignOut,
     handleClose
 }) => {
     return (
@@ -47,7 +52,7 @@ const MenuCustomer = ({ classes, fullName, open,
                                 <MenuList>
                                     <MenuItem onClick={handleClose}>Main services info</MenuItem>
                                     <MenuItem
-                                        onClick={() => {}}>Logout</MenuItem>
+                                        onClick={onSignOut}>Sign out</MenuItem>
                                 </MenuList>
                             </ClickAwayListener>
                         </Paper>
@@ -58,9 +63,9 @@ const MenuCustomer = ({ classes, fullName, open,
     );
 };
 
-MenuCustomer.propTypes = {
-    classes: PropTypes.object.isRequired
-};
+// MenuCustomer.propTypes = {
+//     classes: PropTypes.object.isRequired
+// };
 
 export default compose(
     withState('open', 'changeOpen', false),

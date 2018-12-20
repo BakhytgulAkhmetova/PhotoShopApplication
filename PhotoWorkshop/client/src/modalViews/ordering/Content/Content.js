@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { compose, lifecycle,  withState } from 'recompose';
 import PropTypes from 'prop-types';
 
-// import { Form } from '../Form';
 import { FormOrder } from '../FormOrder';
 import { ButtonList } from '../ButtonList';
 import { emptyOrder } from '../data';
@@ -14,6 +13,7 @@ import { getServicePhotoDocumentList } from '../../../store/servicePhotoDocument
 import { getServicePhotoShootList } from '../../../store/servicePhotoShoot/asyncActions';
 
 const mapStateToProps = (state) => ({
+    customer: state.customer.current,
     formatList: state.format.formatList,
     materialList: state.material.materialList,
     serviceAdditionalList: state.serviceAdditional.data,
@@ -31,6 +31,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Content = ({
     order,
+    customer,
     changeOrder,
     formatList,
     materialList,
@@ -46,10 +47,13 @@ const Content = ({
         serviceAdditionalList={serviceAdditionalList}
         formatList={formatList}
         materialList={materialList}/>
-    <ButtonList order={order}/>
+    <ButtonList
+        customer={customer}
+        order={order}/>
 </div>);
 
 Content.propTypes = {
+    customer: PropTypes.object.isRequired,
     order: PropTypes.object.isRequired,
     changeOrder: PropTypes.isRequired,
     formatList: PropTypes.array.isRequired,
