@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
 import { getManagerrByLoginPassword } from '../../../store/manager/asyncActions';
-// import { getCurrentCustomer } from '../../../store/customer/actionCreators';
+import { getCurrentManager } from '../../../store/manager/actionCreators';
 import { authenticate } from '../../../store/authentication/actionCreators';
 import { closeModal } from '../../../store/modal/actionCreators';
 import { styles } from './styles';
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch, { history, authenticationForm }) => ({
 
         if (authManager) {
             dispatch(authenticate());
-            // dispatch(getCurrentCustomer(authCustomer));
+            dispatch(getCurrentManager(authManager));
         }
         dispatch(closeModal());
         history.push('/manager');

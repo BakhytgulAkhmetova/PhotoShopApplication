@@ -1,13 +1,21 @@
-import { getCustomerOrderListFetch, addOrderFetch
-    // getOrderLastFetch, addOrderDetailsFetch
+import { getCustomerOrderListFetch, addOrderFetch, getAllOrderListFetch
 } from '../../api/order';
-import { getCustomerOrderListRequest, getCustomerOrderListSuccess } from './actionCreators';
+import { getCustomerOrderListRequest, getCustomerOrderListSuccess,
+    getAllOrderListRequest, getAllOrderListSuccess } from './actionCreators';
 
 export  const getCustomerOrderList = (payload) => {
     return async dispatch => {
         await dispatch(getCustomerOrderListRequest(payload));
         await getCustomerOrderListFetch(payload)
             .then(json => dispatch(getCustomerOrderListSuccess(json)));
+    };
+};
+
+export  const getAllOrderList = () => {
+    return async dispatch => {
+        await dispatch(getAllOrderListRequest());
+        await getAllOrderListFetch()
+            .then(json => dispatch(getAllOrderListSuccess(json)));
     };
 };
 

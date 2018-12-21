@@ -14,3 +14,15 @@ export const getCustomerOrderListSuccess = (payload) => {
 export const cleanOrderList = () => {
     return { type: actions.CLEAN_ORDER_LIST };
 };
+
+export const getAllOrderListRequest = () => {
+    return { type: actions.GET_ALL_ORDER_LIST_REQUEST };
+};
+
+export const getAllOrderListSuccess = (payload) => {
+    return {
+        type: actions.GET_ALL_ORDER_LIST_SUCCESS,
+        payload
+    };
+};
+

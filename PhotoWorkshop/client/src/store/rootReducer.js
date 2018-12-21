@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import { customer } from './customer/reducer';
+import { manager } from './manager/reducer';
 import { order } from './order/reducer';
 import { modal } from './modal/reducer';
 import { format } from './format/reducer';
@@ -12,6 +13,7 @@ import { servicePhotoShoot } from './servicePhotoShoot/reducer';
 
 export const rootReducer = combineReducers({
     customer,
+    manager,
     order,
     format,
     material,

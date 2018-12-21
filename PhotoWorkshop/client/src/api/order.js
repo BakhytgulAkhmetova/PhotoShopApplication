@@ -3,6 +3,11 @@ export const getCustomerOrderListFetch = (customerId) => {
         .then(response => response.json());
 };
 
+export const getAllOrderListFetch = () => {
+    return fetch('http://localhost:4000/orders')
+        .then(response => response.json());
+};
+
 export const addOrderFetch = (order) => {
     return fetch('http://localhost:4000/order/add', {
         method: 'POST',

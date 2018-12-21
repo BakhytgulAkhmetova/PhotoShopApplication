@@ -11,9 +11,9 @@ export const getManagerByLoginPasswordSuccess = (payload) => {
     };
 };
 
-// export  const getCurrentManager = (payload) => {
-//     return {
-//         type: type.GET_CURRENT_CUSTOMER,
-//         payload
-//     };
-// };
+export  const getCurrentManager = (payload) => {
+    return {
+        type: type.GET_CURRENT_MANAGER,
+        payload
+    };
+};

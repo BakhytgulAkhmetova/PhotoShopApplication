@@ -14,7 +14,7 @@ import { cleanOrderList } from '../../store/order/actionCreators';
 import { getCustomerOrderList } from '../../store/order/asyncActions';
 
 const mapStateToProps = (state) => ({
-    isRegistrated: state.authentication.isRegistrated,
+    // isRegistrated: state.authentication.isRegistrated,
     customer: state.customer.current,
     orderList: state.order.orderCustomerList
 });
