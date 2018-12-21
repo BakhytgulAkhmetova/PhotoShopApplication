@@ -5,5 +5,10 @@ export const styles = theme => ({
     formAutorise: {
         width: '260px',
         margin: '5px auto'
+    },
+    errorMessage: {
+        color: 'red',
+        fontSize: '14px',
+        textTransform: 'lowercase'
     }
 });

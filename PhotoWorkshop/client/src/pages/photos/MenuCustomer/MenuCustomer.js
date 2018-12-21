@@ -27,9 +27,9 @@ const handlers = {
         changeOpen(false);
         handleSignOut.apply(this);
     },
-    onGoToPhotos: ({ changeOpen, history }) => event => {
+    onGoToProfile: ({ changeOpen, history }) => event => {
         changeOpen(false);
-        history.push('/customer/photos');
+        history.push('/customer');
     }
 };
 
@@ -37,7 +37,7 @@ const MenuCustomer = ({ classes, fullName, open,
     handleToggle,
     onSignOut,
     onMainServices,
-    onGoToPhotos,
+    onGoToProfile,
     handleClose
 }) => {
     return (
@@ -62,7 +62,7 @@ const MenuCustomer = ({ classes, fullName, open,
                                 <MenuList>
                                     <MenuItem onClick={onMainServices}>Main services info</MenuItem>
                                     <MenuItem onClick={onSignOut}>Sign out</MenuItem>
-                                    <MenuItem onClick={onGoToPhotos}>My photos</MenuItem>
+                                    <MenuItem onClick={onGoToProfile}>Profile</MenuItem>
                                 </MenuList>
                             </ClickAwayListener>
                         </Paper>

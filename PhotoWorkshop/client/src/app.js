@@ -10,6 +10,7 @@ import { Customer } from './pages/customer';
 import { Manager } from './pages/manager';
 import { ModalProvider } from './components/ModalProvider';
 import { PrivateRoute } from './components/PrivateRoute';
+import { Photos } from './pages/photos';
 
 import './app.scss';
 
@@ -23,6 +24,7 @@ export class App extends Component {
                     <div>
                         <Router>
                             <Switch>
+                                <PrivateRoute path='/customer/photos' component={Photos} />
                                 <PrivateRoute path='/customer' component={Customer} />
                                 <PrivateRoute path='/manager' component={Manager} />
                                 <Route path='/' component={Home} />

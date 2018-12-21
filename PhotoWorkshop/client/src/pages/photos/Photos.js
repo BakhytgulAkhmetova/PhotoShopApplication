@@ -1,17 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, lifecycle } from 'recompose';
+import { compose } from 'recompose';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { ContentPage } from './ContentPage';
-import { Content } from '../../../src/modalViews/ordering/Content';
-import { fillContent, fillHeader, changeStyle, openModal } from '../../store/modal/actionCreators';
 import { signout } from '../../store/authentication/actionCreators';
 import { cleanOrderList } from '../../store/order/actionCreators';
-import { getCustomerOrderList } from '../../store/order/asyncActions';
 
 const mapStateToProps = (state) => ({
     isRegistrated: state.authentication.isRegistrated,
@@ -20,22 +17,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    handleClick: () => {
-        dispatch(fillHeader(<h1 className='capture-ordering'>New order</h1>));
-        dispatch(fillContent(<Content/>));
-        dispatch(changeStyle('modal-ordering'));
-        dispatch(openModal());
-    },
     handleSignOut: () => {
         dispatch(cleanOrderList());
         dispatch(signout());
-    },
-    getOrderList: (customer) => {
-        dispatch(getCustomerOrderList(customer.ID));
     }
 });
 
-const Customer = ({ customer, handleClick, handleSignOut, orderList, history }) => {
+const Photos = ({ customer, handleSignOut, history }) => {
     const fullName = `${customer.FirstName  }  ${  customer.LastName[0] || ''}.`;
 
     return (<div>
@@ -43,14 +31,12 @@ const Customer = ({ customer, handleClick, handleSignOut, orderList, history }) 
             history={history}
             handleSignOut={handleSignOut}
             fullName={fullName}/>
-        <ContentPage
-            orderList={orderList}
-            handleClick={handleClick}/>
+        <ContentPage/>
         <Footer/>
     </div>);
 };
 
-Customer.propTypes = {
+Photos.propTypes = {
     customer: PropTypes.object.isRequired,
     orderList:PropTypes.array.isRequired,
     handleClick: PropTypes.func.isRequired,
@@ -60,10 +46,5 @@ Customer.propTypes = {
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, mapDispatchToProps),
-    lifecycle({
-        componentDidMount() {
-            this.props.getOrderList(this.props.customer);
-        }
-    })
-)(Customer);
+    connect(mapStateToProps, mapDispatchToProps)
+)(Photos);

@@ -11,7 +11,7 @@ import { photoShootPath, photoDocumentPath, photoPrintPath } from './constants';
 
 import { styles } from './styles';
 
-import './Content.scss';
+import './ContentPage.scss';
 
 const titleData = [{
     img: photoShootPath,

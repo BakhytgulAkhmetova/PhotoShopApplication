@@ -7,3 +7,9 @@ export const regFormCustomer = {
     password: ['isNotEmpty'],
     isDisabled: []
 };
+
+export const authForm = {
+    login: ['isNotEmpty', 'isEmail'],
+    password: ['isNotEmpty'],
+    isDisabled: []
+};

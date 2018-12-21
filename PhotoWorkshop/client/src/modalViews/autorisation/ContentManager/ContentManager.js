@@ -3,31 +3,16 @@ import PropTypes from 'prop-types';
 import { compose, withState, withHandlers } from 'recompose';
 
 import { FormAuth } from '../FormAuth';
-import { ButtonList } from '../ButtonList';
+import { ButtonListManager } from '../ButtonListManager';
 import { emptyAuthForm } from '../data';
-import { Validator } from '../../../utils/validator';
-import { default as types } from '../../../data/errorType';
-import { authForm } from '../../../data/validationConfig';
 
 import './Content.scss';
-
-const validator = new Validator({ types, config: authForm });
-
-const validate = (field, input) => {
-    validator.cleanListErrors();
-
-    validator.validate({ [field]: { value: input } });
-
-    return { errors: validator.listErrors[0].msgs, value: input || '' };
-};
 
 const handlers = {
     onChangeAuthForm: ({ authenticationForm, changeAuthenticationForm }) => event => {
         const field = event.target.name;
-        const value = validate(field, event.target.value);
-        const hasErrors = validator.validate(authenticationForm);
 
-        changeAuthenticationForm({ ...authenticationForm, [field]: value, isDisabled: { value: hasErrors } });
+        changeAuthenticationForm({ ...authenticationForm, [field]: event.target.value });
     }
 };
 
@@ -41,8 +26,7 @@ const Content = ({
             <FormAuth
                 onChangeAuthForm={onChangeAuthForm}
                 authenticationForm={authenticationForm}/>
-            <ButtonList
-                isValidForm={authenticationForm.isDisabled.value}
+            <ButtonListManager
                 authenticationForm={authenticationForm}
                 history={history}/>
         </div>

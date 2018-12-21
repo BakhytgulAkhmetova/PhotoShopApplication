@@ -1,4 +1,5 @@
 export const emptyAuthForm = {
-    login: '',
-    password: ''
+    login: { value: '' },
+    password: { value: '' },
+    isDisabled: { value: true }
 };
