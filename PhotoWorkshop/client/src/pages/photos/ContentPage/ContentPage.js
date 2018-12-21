@@ -1,5 +1,4 @@
 import React from 'react';
-// import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { compose, withState, withHandlers } from 'recompose';
 import Gallery from 'react-photo-gallery';

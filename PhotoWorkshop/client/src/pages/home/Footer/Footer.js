@@ -17,6 +17,7 @@ const Footer = (props) => {
             className={classes.appFooter}>
             <BottomNavigationAction className={classes.appBarIconCamera} label='PhotoWorkShop' icon={<PhotoCamera />} />
             <Button
+                id='manager'
                 onClick={openManagerModal}
                 className={classes.appBarButton}>for managers</Button>
         </BottomNavigation>

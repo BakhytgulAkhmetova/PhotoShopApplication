@@ -6,7 +6,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import { withRouter } from 'react-router-dom';
 
 import { signout } from '../../../store/authentication/actionCreators';
 import { Content } from '../../../modalViews/autorisation/Content';
@@ -58,7 +57,6 @@ Header.propTypes = {
 };
 
 export default  compose(
-    withRouter,
     connect(mapStateToProps, mapDispatchToProps),
     withStyles(styles)
 )(Header);

@@ -4,6 +4,7 @@ import { compose, withState, withHandlers } from 'recompose';
 
 import { FormAuth } from '../FormAuth';
 import { ButtonList } from '../ButtonList';
+import { ButtonListManager } from '../ButtonListManager';
 import { emptyAuthForm } from '../data';
 import { Validator } from '../../../utils/validator';
 import { default as types } from '../../../data/errorType';
@@ -34,6 +35,7 @@ const handlers = {
 const Content = ({
     authenticationForm,
     history,
+    idButton,
     onChangeAuthForm
 }) => {
     return (
@@ -41,22 +43,29 @@ const Content = ({
             <FormAuth
                 onChangeAuthForm={onChangeAuthForm}
                 authenticationForm={authenticationForm}/>
-            <ButtonList
-                isValidForm={authenticationForm.isDisabled.value}
-                authenticationForm={authenticationForm}
-                history={history}/>
+            {
+                idButton === 'manager' ?
+                    <ButtonListManager
+                        isValidForm={authenticationForm.isDisabled.value}
+                        authenticationForm={authenticationForm}
+                        history={history}/> :
+                    <ButtonList
+                        isValidForm={authenticationForm.isDisabled.value}
+                        authenticationForm={authenticationForm}
+                        history={history}/>
+            }
         </div>
     );
 };
 
-
 Content.propTypes = {
     history: PropTypes.object.isRequired,
     authenticationForm: PropTypes.object.isRequired,
+    idButton: PropTypes.string,
     onChangeAuthForm: PropTypes.func.isRequired
 };
 
 export default compose(
     withState('authenticationForm', 'changeAuthenticationForm', emptyAuthForm),
-    withHandlers(handlers),
+    withHandlers(handlers)
 )(Content);

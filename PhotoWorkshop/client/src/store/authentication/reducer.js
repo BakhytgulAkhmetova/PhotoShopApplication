@@ -8,6 +8,11 @@ export const authentication = (state = initialStateAuth, action) => {
                 ...state,
                 isAuthenticated: !state.isAuthenticated
             };
+            // case types.AUTHENTICATE_MANAGER:
+            //     return {
+            //         ...state,
+            //         isAuthenticatedManager: !state.isAuthenticatedManager
+            //     };
 
         case types.REGISTRATE:
             return {

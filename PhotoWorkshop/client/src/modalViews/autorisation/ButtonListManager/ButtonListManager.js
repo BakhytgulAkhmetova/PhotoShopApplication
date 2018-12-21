@@ -5,8 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
-import { getCustomerByLoginPassword } from '../../../store/customer/asyncActions';
-import { getCurrentCustomer } from '../../../store/customer/actionCreators';
+import { getManagerrByLoginPassword } from '../../../store/manager/asyncActions';
+// import { getCurrentCustomer } from '../../../store/customer/actionCreators';
 import { authenticate } from '../../../store/authentication/actionCreators';
 import { closeModal } from '../../../store/modal/actionCreators';
 import { styles } from './styles';
@@ -17,18 +17,18 @@ const mapDispatchToProps = (dispatch, { history, authenticationForm }) => ({
     onCancel: () => dispatch(closeModal()),
     onSignIn: async () => {
         const { login, password } = authenticationForm;
-        const authCustomer = await dispatch(getCustomerByLoginPassword(login, password));
+        const authManager = await dispatch(getManagerrByLoginPassword(login.value, password.value));
 
-        if (authCustomer) {
+        if (authManager) {
             dispatch(authenticate());
-            dispatch(getCurrentCustomer(authCustomer));
+            // dispatch(getCurrentCustomer(authCustomer));
         }
         dispatch(closeModal());
-        history.push('/customer');
+        history.push('/manager');
     }
 });
 
-const ButtonList = ({ onSignIn, classes, onCancel }) => {
+const ButtonList = ({ onSignIn, classes, onCancel, isValidForm }) => {
     return (
         <div className='btn-list__manager'>
             <Button
@@ -38,6 +38,7 @@ const ButtonList = ({ onSignIn, classes, onCancel }) => {
                 variant='outlined' size='medium' color='primary'>
             cancel </Button>, <Button
                 key='registration'
+                disabled={isValidForm}
                 className={classes.button}
                 onClick={onSignIn}
                 variant='contained' size='medium' color='primary'>
@@ -49,7 +50,8 @@ const ButtonList = ({ onSignIn, classes, onCancel }) => {
 ButtonList.propTypes = {
     onSignIn: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
-    onCancel: PropTypes.func.isRequired
+    onCancel: PropTypes.func.isRequired,
+    isValidForm: PropTypes.bool.isRequired
 };
 
 export default compose(

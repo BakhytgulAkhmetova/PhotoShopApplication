@@ -1,4 +1,4 @@
-const { getaManagerList, getManagerById } = require('../query/manager');
+const { getaManagerList, getManagerById, getManagerByLoginPassword } = require('../query/manager');
 const { addManager, updateManager, deleteManager } = require('../mutation/manager');
 
 const managerRoutes = (app, sqlConfig) => {
@@ -8,6 +8,10 @@ const managerRoutes = (app, sqlConfig) => {
 
     app.get('/manager/:id', async function (req, res) {
         res.send(await getManagerById(sqlConfig, req.params.id));
+    });
+
+    app.get('/manager/:login/:password', async function (req, res) {
+        res.send(await getManagerByLoginPassword(sqlConfig, req.params.login, req.params.password));
     });
 
     app.post('/manager/add', async function (req, res) {
