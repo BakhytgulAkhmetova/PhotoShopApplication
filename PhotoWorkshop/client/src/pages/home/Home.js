@@ -10,6 +10,10 @@ import { ContentPage } from './ContentPage';
 import { Content } from '../../modalViews/autorisation/Content';
 import { openModal, fillHeader, fillContent, changeStyle } from '../../store/modal/actionCreators';
 
+const mapStateToProps = (state) => ({
+    auth: state.authentication
+});
+
 const mapDispatchToProps = (dispatch, { history }) => ({
     openManagerModal: (event) => {
         dispatch(fillHeader(<h1 className='capture-autorisation'>Sigh in as manager</h1>));
@@ -21,11 +25,12 @@ const mapDispatchToProps = (dispatch, { history }) => ({
     }
 });
 
-const Home = ({ openManagerModal, history }) => {
+const Home = ({ openManagerModal, history, auth }) => {
     return (<div>
         <Header history={history}/>
         <ContentPage/>
         <Footer
+            isAuth={auth.isAuthenticated}
             history={history}
             openManagerModal={openManagerModal}/>
     </div>);
@@ -33,10 +38,11 @@ const Home = ({ openManagerModal, history }) => {
 
 Home.propTypes = {
     openManagerModal: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    auth: PropTypes.bool.isRequired
 };
 
 export default compose(
     withRouter,
-    connect(null, mapDispatchToProps)
+    connect(mapStateToProps, mapDispatchToProps)
 )(Home);

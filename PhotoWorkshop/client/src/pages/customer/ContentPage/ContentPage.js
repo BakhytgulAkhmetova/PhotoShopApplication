@@ -10,6 +10,9 @@ import { OrderTable } from '../../../components/OrderTable';
 import './ContentPage.scss';
 import { styles } from './styles';
 
+const fieldBodyTable = ['ID', 'Status', 'Price'];
+const fieldHeadTable = ['№', 'Status', 'Price'];
+
 const ContentPage = ({ classes, handleClick, orderList }) => {
     return (<div className='customer-content'>
         <div className='customer-content__order-capture'>
@@ -18,7 +21,10 @@ const ContentPage = ({ classes, handleClick, orderList }) => {
                 onClick={handleClick}
                 className={classNames('order-capture__button', classes.btnOrder)} >Create new</Button>
         </div>
-        <OrderTable data={orderList}/>
+        <OrderTable
+            properties={fieldBodyTable}
+            heads={fieldHeadTable}
+            data={orderList}/>
     </div>);
 };
 

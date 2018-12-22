@@ -9,24 +9,34 @@ import Button from '@material-ui/core/Button';
 import { styles } from '../Footer/styles';
 
 const Footer = (props) => {
-    const { classes, openManagerModal } = props;
+    const { classes, openManagerModal, isAuth } = props;
 
     return (
         <BottomNavigation
             showLabels
             className={classes.appFooter}>
-            <BottomNavigationAction className={classes.appBarIconCamera} label='PhotoWorkShop' icon={<PhotoCamera />} />
-            <Button
-                id='manager'
-                onClick={openManagerModal}
-                className={classes.appBarButton}>for managers</Button>
+            {
+                isAuth ? null : [
+                    <BottomNavigationAction
+                        key='icon'
+                        className={classes.appBarIconCamera}
+                        label='PhotoWorkShop' icon={<PhotoCamera />} />,
+                    <Button
+                        key='btn'
+                        id='manager'
+                        onClick={openManagerModal}
+                        className={classes.appBarButton}>
+                        for managers
+                    </Button>]
+            }
         </BottomNavigation>
     );
 };
 
 Footer.propTypes = {
     classes: PropTypes.object.isRequired,
-    openManagerModal: PropTypes.func.isRequired
+    openManagerModal: PropTypes.func.isRequired,
+    isAuth: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(Footer);

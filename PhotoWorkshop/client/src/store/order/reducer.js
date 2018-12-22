@@ -12,6 +12,23 @@ export const order = (state = orderInitialState, action) => {
                 orderCustomerList: action.payload,
                 isLoading: !state.isLoading
             };
+        case types.UPDATE_ORDER_STATUS_REQUEST:
+            return { ...state, isLoading: !state.isLoading };
+
+        case types.UPDATE_ORDER_STATUS_SUCCESS:
+            return  {
+                ...state,
+                isLoading: !state.isLoading
+            };
+
+        case types.DELETE_ORDER_REQUEST:
+            return { ...state, isLoading: !state.isLoading };
+
+        case types.DELETE_ORDER_SUCCESS:
+            return  {
+                ...state,
+                isLoading: !state.isLoading
+            };
 
         case types.CLEAN_ORDER_LIST:
             return { ...state, orderCustomerList: [] };

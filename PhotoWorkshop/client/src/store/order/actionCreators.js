@@ -26,3 +26,22 @@ export const getAllOrderListSuccess = (payload) => {
     };
 };
 
+export const updateOrderStatusRequest = () => {
+    return { type: actions.UPDATE_ORDER_STATUS_REQUEST };
+};
+
+export const updateOrderStatusSuccess = () => {
+    return {
+        type: actions.UPDATE_ORDER_STATUS_SUCCESS
+    };
+};
+
+export const deleteOrderRequest = () => {
+    return { type: actions.DELETE_ORDER_REQUEST };
+};
+
+export const deleteOrderSuccess = () => {
+    return {
+        type: actions.DELETE_ORDER_SUCCESS
+    };
+};

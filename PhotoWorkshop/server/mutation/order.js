@@ -38,6 +38,18 @@ async function updateOrder(sqlConfig, id, orderUpdated) {
     .execute('UpdateOrder');
 }
 
+async function updateOrderStatus(sqlConfig, id, orderUpdated) {
+    const pool = await new sql.ConnectionPool(sqlConfig).connect();
+    const { timeReady, status } = orderUpdated;
+    console.log(orderUpdated);
+
+    return await pool.request()
+    .input('ID', sql.Int, id)
+    .input('TIME_READY', sql.DateTime, timeReady)
+    .input('STATUS', sql.NVarChar(30), status)
+    .execute('UpdateOrderStatus');
+}
+
 async function deleteOrder(sqlConfig, id) {
     const pool = await new sql.ConnectionPool(sqlConfig).connect();
     return await pool.request()
@@ -49,5 +61,6 @@ module.exports = {
     addOrder,
     addOrderDetails,
     updateOrder,
-    deleteOrder
+    deleteOrder,
+    updateOrderStatus
  };

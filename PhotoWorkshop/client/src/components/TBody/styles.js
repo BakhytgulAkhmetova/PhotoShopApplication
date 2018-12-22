@@ -8,5 +8,8 @@ export const styles = theme => ({
     },
     tableWrapper: {
         overflowX: 'auto'
+    },
+    margin: {
+        margin: theme.spacing.unit
     }
 });

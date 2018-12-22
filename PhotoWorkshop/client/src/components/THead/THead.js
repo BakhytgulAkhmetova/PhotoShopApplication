@@ -7,9 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { styles } from './styles';
 
-const heads = ['№', 'Status', 'Price'];
-
-const THead = ({ classes }) => {
+const THead = ({ classes, heads }) => {
     return (<TableHead>
         <TableRow>
             {
@@ -24,7 +22,8 @@ const THead = ({ classes }) => {
 };
 
 THead.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    heads: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(THead);

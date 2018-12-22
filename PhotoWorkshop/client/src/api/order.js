@@ -17,6 +17,21 @@ export const addOrderFetch = (order) => {
         .then(response => response.json());
 };
 
+export const updateOrderStatusFetch = (updateOptions, id) => {
+    return fetch(`http://localhost:4000/order/update/status/${id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        cache: 'no-cache',
+        body: JSON.stringify(updateOptions) })
+        .then(response => response.json());
+};
+
+export const deleteOrderFetch = (id) => {
+    return fetch(`http://localhost:4000/order/delete/${id}`, {
+        method: 'GET'
+    }).then(response => response.json());
+};
+
 export const addOrderDetailsFetch = (details) => {
     return fetch('http://localhost:4000/order/details', {
         method: 'POST',

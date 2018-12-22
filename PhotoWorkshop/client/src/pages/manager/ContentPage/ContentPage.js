@@ -8,15 +8,31 @@ import { OrderTable } from '../../../components/OrderTable';
 import './ContentPage.scss';
 import { styles } from './styles';
 
-const ContentPage = ({ orderListAll }) => {
+const fieldBodyTable = ['ID', 'Tarif', 'Price', 'TimeReady'];
+const fieldHeadTable = ['№', 'Tarif', 'Price', 'TimeReady', 'Status', ''];
+const configSelect = {
+    selectedProp: 'Status',
+    options: ['in progress', 'completed', 'waiting']
+};
+
+const ContentPage = ({ orderListAll, handleChange, handleDelete }) => {
     return (<div className='manager-content'>
         <h1 className='order-capture__text'>All orders</h1>
-        <OrderTable data={orderListAll}/>
+        <OrderTable
+            button
+            handleDelete={handleDelete}
+            handleChange={handleChange}
+            configSelect={configSelect}
+            properties={fieldBodyTable}
+            heads={fieldHeadTable}
+            data={orderListAll}/>
     </div>);
 };
 
 ContentPage.propTypes = {
-    orderListAll: PropTypes.array.isRequired
+    orderListAll: PropTypes.array.isRequired,
+    handleChange: PropTypes.func,
+    handleDelete: PropTypes.func
 };
 
 export default compose(

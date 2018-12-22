@@ -33,15 +33,20 @@ class OrderTable extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, properties, heads, configSelect, handleChange, button, handleDelete } = this.props;
         const { rows, rowsPerPage, page } = this.state;
 
         return (
             <Paper className={classes.root}>
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table}>
-                        <THead/>
+                        <THead heads={heads}/>
                         <TBody
+                            handleDelete={handleDelete}
+                            button={button}
+                            handleChange={handleChange}
+                            configSelect={configSelect}
+                            properties={properties}
                             rows={rows}
                             rowsPerPage={rowsPerPage}
                             page={page}/>
@@ -60,7 +65,13 @@ class OrderTable extends React.Component {
 
 OrderTable.propTypes = {
     classes: PropTypes.object.isRequired,
-    data: PropTypes.array.isRequired
+    data: PropTypes.array.isRequired,
+    properties: PropTypes.array.isRequired,
+    heads: PropTypes.array.isRequired,
+    configSelect: PropTypes.object,
+    handleChange: PropTypes.func,
+    handleDelete: PropTypes.func,
+    button: PropTypes.bool
 };
 
 export default compose(
