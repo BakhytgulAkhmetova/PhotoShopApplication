@@ -22,6 +22,26 @@ const validate = (field, input) => {
     return { errors: validator.listErrors[0].msgs, value: input || '' };
 };
 
+const getModalButtonList = (idButton, isValidForm, authenticationForm, history) => {
+    switch (idButton) {
+        case 'manager':
+            return (<ButtonListManager
+                isValidForm={isValidForm}
+                authenticationForm={authenticationForm}
+                history={history}/>);
+        case 'head':
+            return (<ButtonListManager
+                isValidForm
+                authenticationForm
+                history/>);
+        default:
+            return (<ButtonList
+                isValidForm={isValidForm}
+                authenticationForm={authenticationForm}
+                history={history}/>);
+    }
+};
+
 const handlers = {
     onChangeAuthForm: ({ authenticationForm, changeAuthenticationForm }) => event => {
         const field = event.target.name;
@@ -44,15 +64,9 @@ const Content = ({
                 onChangeAuthForm={onChangeAuthForm}
                 authenticationForm={authenticationForm}/>
             {
-                idButton === 'manager' ?
-                    <ButtonListManager
-                        isValidForm={authenticationForm.isDisabled.value}
-                        authenticationForm={authenticationForm}
-                        history={history}/> :
-                    <ButtonList
-                        isValidForm={authenticationForm.isDisabled.value}
-                        authenticationForm={authenticationForm}
-                        history={history}/>
+                getModalButtonList(idButton,
+                    authenticationForm.isDisabled.value,
+                    authenticationForm, history)
             }
         </div>
     );

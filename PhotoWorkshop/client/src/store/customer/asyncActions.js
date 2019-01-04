@@ -7,9 +7,10 @@ import * as actionOrder  from '../order/asyncActions';
 export  const addCustomer = (payload) => {
     return async dispatch => {
         await dispatch(action.addCustomerRequest());
-        const res = await addCustomerFetch(payload);
+        await addCustomerFetch(payload);
+        // debugger;
 
-        await dispatch(action.addCustomerSuccess(res));
+        // await dispatch(action.addCustomerSuccess(res));
     };
 };
 

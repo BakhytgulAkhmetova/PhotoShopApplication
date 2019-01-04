@@ -4,12 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import PhotoCamera  from '@material-ui/icons/PhotoCamera';
-import Button from '@material-ui/core/Button';
+import { MenuStaff } from '../MenuStaff';
 
 import { styles } from '../Footer/styles';
 
 const Footer = (props) => {
-    const { classes, openManagerModal, isAuth } = props;
+    const { classes, isAuth, openManagerModal, openHeadModal  } = props;
 
     return (
         <BottomNavigation
@@ -21,13 +21,18 @@ const Footer = (props) => {
                         key='icon'
                         className={classes.appBarIconCamera}
                         label='PhotoWorkShop' icon={<PhotoCamera />} />,
-                    <Button
-                        key='btn'
-                        id='manager'
-                        onClick={openManagerModal}
-                        className={classes.appBarButton}>
-                        for managers
-                    </Button>]
+                    <MenuStaff
+                        key='menu-staff'
+                        openManagerModal={openManagerModal}
+                        openHeadModal={openHeadModal}/>
+                    // <Button
+                    //     key='btn'
+                    //     id='manager'
+                    //     onClick={openManagerModal}
+                    //     className={classes.appBarButton}>
+                    //     the staff
+                    // </Button>
+                ]
             }
         </BottomNavigation>
     );
@@ -36,6 +41,7 @@ const Footer = (props) => {
 Footer.propTypes = {
     classes: PropTypes.object.isRequired,
     openManagerModal: PropTypes.func.isRequired,
+    openHeadModal: PropTypes.func.isRequired,
     isAuth: PropTypes.bool.isRequired
 };
 
