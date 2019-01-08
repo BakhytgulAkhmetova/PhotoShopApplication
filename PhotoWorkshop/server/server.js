@@ -19,6 +19,7 @@ app.use(function(req, res, next) {
 require('./routes/customer')(app, sqlConfig);
 require('./routes/format')(app, sqlConfig);
 require('./routes/manager')(app, sqlConfig);
+require('./routes/head')(app, sqlConfig);
 require('./routes/material')(app, sqlConfig);
 require('./routes/order')(app, sqlConfig);
 require('./routes/photo')(app, sqlConfig);

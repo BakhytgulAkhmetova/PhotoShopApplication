@@ -8,6 +8,7 @@ import { default as storage } from './store/store';
 import { Home } from './pages/home';
 import { Customer } from './pages/customer';
 import { Manager } from './pages/manager';
+import { Head } from './pages/head';
 import { ModalProvider } from './components/ModalProvider';
 import { PrivateRoute } from './components/PrivateRoute';
 import { Photos } from './pages/photos';
@@ -27,6 +28,7 @@ export class App extends Component {
                                 <PrivateRoute path='/customer/photos' component={Photos} />
                                 <PrivateRoute path='/customer' component={Customer} />
                                 <PrivateRoute path='/manager' component={Manager} />
+                                <PrivateRoute path='/head' component={Head} />
                                 <Route path='/' component={Home} />
                             </Switch>
                         </Router>

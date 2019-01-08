@@ -1,6 +1,7 @@
 export const styles = theme => ({
     root: {
-        marginLeft: 'auto'
+        display: 'flex',
+        marginLeft: '87%'
     },
     paper: {
         marginRight: theme.spacing.unit * 2

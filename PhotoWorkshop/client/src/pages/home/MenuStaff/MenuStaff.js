@@ -1,11 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { compose, withState, withHandlers } from 'recompose';
 
@@ -28,42 +23,28 @@ const handlers = {
     }
 };
 
-const MenuStaff = ({ classes, fullName, open,
-    handleToggle,
+const MenuStaff = ({ classes,
     onOpenHead,
-    onOpenManager,
-    handleClose
+    onOpenManager
 }) => {
     return (
         <div className={classes.root}>
             <Button
-                aria-owns={open ? 'menu-list-grow' : undefined}
-                className={classes.appBarButton}
-                onClick={handleToggle}>
-                {fullName || 'customer'}
-            </Button>
-            <Popper
-                open={open} transition
-                disablePortal>
-                {({ TransitionProps, placement }) => (
-                    <Grow
-                        {...TransitionProps}
-                        id='menu-list-grow'
-                        style={{ transformOrigin: placement === 'bottom' ?
-                            'center top' : 'center bottom' }}>
-                        <Paper>
-                            <ClickAwayListener onClickAway={handleClose}>
-                                <MenuList>
-                                    <MenuItem id='manager' onClick={onOpenManager}>Manager</MenuItem>
-                                    <MenuItem id='head' onClick={onOpenHead}>Head</MenuItem>
-                                </MenuList>
-                            </ClickAwayListener>
-                        </Paper>
-                    </Grow>
-                )}
-            </Popper>
+                onClick={onOpenManager}
+                id='manager'
+                className={classes.appBarButton}>manager</Button>
+            <Button
+                onClick={onOpenHead}
+                id='head'
+                className={classes.appBarButton} >head</Button>
         </div>
     );
+};
+
+MenuStaff.propTypes = {
+    classes: PropTypes.object,
+    onOpenHead: PropTypes.func,
+    onOpenManager: PropTypes.func
 };
 
 export default compose(

@@ -16,7 +16,15 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch, { history }) => ({
     openManagerModal: (event) => {
-        dispatch(fillHeader(<h1 className='capture-autorisation'>Sigh in as manager</h1>));
+        dispatch(fillHeader(<h1 className='capture-autorisation'>Sign in as manager</h1>));
+        dispatch(fillContent(<Content
+            history={history}
+            idButton={event.currentTarget.id}/>));
+        dispatch(changeStyle('modal-autorisation'));
+        dispatch(openModal());
+    },
+    openHeadModal: (event) => {
+        dispatch(fillHeader(<h1 className='capture-autorisation'>Sign in as head</h1>));
         dispatch(fillContent(<Content
             history={history}
             idButton={event.currentTarget.id}/>));
@@ -25,19 +33,21 @@ const mapDispatchToProps = (dispatch, { history }) => ({
     }
 });
 
-const Home = ({ openManagerModal, history, auth }) => {
+const Home = ({ openManagerModal, openHeadModal, history, auth }) => {
     return (<div>
         <Header history={history}/>
         <ContentPage/>
         <Footer
             isAuth={auth.isAuthenticated}
             history={history}
+            openHeadModal={openHeadModal}
             openManagerModal={openManagerModal}/>
     </div>);
 };
 
 Home.propTypes = {
     openManagerModal: PropTypes.func.isRequired,
+    openHeadModal: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
     auth: PropTypes.bool.isRequired
 };

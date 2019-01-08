@@ -8,7 +8,6 @@ import { styles } from './styles';
 const FormAuth = ({ classes, onChangeAuthForm, authenticationForm }) =>  {
     const errors = Object.keys(authenticationForm).filter((key) => (authenticationForm[key].errors
         && authenticationForm[key].errors.length));
-    // console.log(errors);
 
     return (
         <form className={classes.formAutorise} autoComplete='off'>

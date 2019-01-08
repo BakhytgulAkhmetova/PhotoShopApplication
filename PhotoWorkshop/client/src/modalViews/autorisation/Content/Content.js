@@ -5,6 +5,7 @@ import { compose, withState, withHandlers } from 'recompose';
 import { FormAuth } from '../FormAuth';
 import { ButtonList } from '../ButtonList';
 import { ButtonListManager } from '../ButtonListManager';
+import { ButtonListHead } from '../ButtonListHead';
 import { emptyAuthForm } from '../data';
 import { Validator } from '../../../utils/validator';
 import { default as types } from '../../../data/errorType';
@@ -30,10 +31,10 @@ const getModalButtonList = (idButton, isValidForm, authenticationForm, history) 
                 authenticationForm={authenticationForm}
                 history={history}/>);
         case 'head':
-            return (<ButtonListManager
-                isValidForm
-                authenticationForm
-                history/>);
+            return (<ButtonListHead
+                isValidForm={isValidForm}
+                authenticationForm={authenticationForm}
+                history={history}/>);
         default:
             return (<ButtonList
                 isValidForm={isValidForm}

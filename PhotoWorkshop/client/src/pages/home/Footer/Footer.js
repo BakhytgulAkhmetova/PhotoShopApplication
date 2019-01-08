@@ -8,6 +8,8 @@ import { MenuStaff } from '../MenuStaff';
 
 import { styles } from '../Footer/styles';
 
+import './Footer.scss';
+
 const Footer = (props) => {
     const { classes, isAuth, openManagerModal, openHeadModal  } = props;
 
@@ -25,13 +27,6 @@ const Footer = (props) => {
                         key='menu-staff'
                         openManagerModal={openManagerModal}
                         openHeadModal={openHeadModal}/>
-                    // <Button
-                    //     key='btn'
-                    //     id='manager'
-                    //     onClick={openManagerModal}
-                    //     className={classes.appBarButton}>
-                    //     the staff
-                    // </Button>
                 ]
             }
         </BottomNavigation>
