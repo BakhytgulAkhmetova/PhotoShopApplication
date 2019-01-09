@@ -24,10 +24,10 @@ const handlers = {
     }
 };
 
-const MenuHead = ({ classes, fullName, open,
+const MenuHead = ({ classes, open,
     handleToggle,
     onSignOut,
-    onGetResults,
+    handleGetOrders,
     handleClose
 }) => {
     return (
@@ -51,7 +51,7 @@ const MenuHead = ({ classes, fullName, open,
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList>
                                     <MenuItem onClick={onSignOut}>Sign out</MenuItem>
-                                    <MenuItem onClick={onGetResults}>Results</MenuItem>
+                                    <MenuItem onClick={handleGetOrders}>Orders</MenuItem>
                                 </MenuList>
                             </ClickAwayListener>
                         </Paper>

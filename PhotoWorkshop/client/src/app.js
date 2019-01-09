@@ -12,6 +12,7 @@ import { Head } from './pages/head';
 import { ModalProvider } from './components/ModalProvider';
 import { PrivateRoute } from './components/PrivateRoute';
 import { Photos } from './pages/photos';
+import { ResultsForHead } from './pages/results';
 
 import './app.scss';
 
@@ -28,6 +29,7 @@ export class App extends Component {
                                 <PrivateRoute path='/customer/photos' component={Photos} />
                                 <PrivateRoute path='/customer' component={Customer} />
                                 <PrivateRoute path='/manager' component={Manager} />
+                                <PrivateRoute path='/head/results' component={ResultsForHead} />
                                 <PrivateRoute path='/head' component={Head} />
                                 <Route path='/' component={Home} />
                             </Switch>

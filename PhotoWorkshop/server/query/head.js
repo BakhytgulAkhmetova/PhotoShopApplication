@@ -6,10 +6,9 @@ async function getHeadByLoginPassword(sqlConfig, login, password) {
     .input('LOGIN', sql.NVarChar, login)
     .input('PASSWORD', sql.NVarChar, password).execute('GetHeadByLoginPassword');
     const head = result.recordset.length ? result.recordset[0] : null;
-    console.log(head);
     return head;
 }
 
 module.exports = { 
     getHeadByLoginPassword
- };
+};

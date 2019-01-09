@@ -21,8 +21,8 @@ const mapDispatchToProps = (dispatch, { history }) => ({
         dispatch(cleanOrderList());
         dispatch(signout());
     },
-    handleGetResults: () => {
-        history.push('/head/results');
+    handleGetOrders: () => {
+        history.push('./head');
     },
     getOrderList: () => {
         dispatch(getAllOrderList());
@@ -40,13 +40,15 @@ const mapDispatchToProps = (dispatch, { history }) => ({
     }
 });
 
-const Head = ({ handleSignOut, handleGetResults, head, orderListAll, handleChange, handleDelete }) => {
+const ResultsForHead = ({ handleSignOut, handleGetOrders,
+    head, orderListAll, handleChange, handleDelete, history }) => {
     const fullName = `${head.FirstName  }  ${  head.LastName[0] || ''}.`;
 
     return (<div>
         <Header
+            history={history}
             fullName={fullName}
-            onGetResults={handleGetResults}
+            handleGetOrders={handleGetOrders}
             handleSignOut={handleSignOut}/>
         <ContentPage
             handleDelete={handleDelete}
@@ -56,10 +58,10 @@ const Head = ({ handleSignOut, handleGetResults, head, orderListAll, handleChang
     </div>);
 };
 
-Head.propTypes = {
+ResultsForHead.propTypes = {
     history: PropTypes.object.isRequired,
     handleSignOut: PropTypes.func.isRequired,
-    handleGetResults: PropTypes.func.isRequired,
+    handleGetOrders: PropTypes.func.isRequired,
     head: PropTypes.object.isRequired,
     orderListAll: PropTypes.array.isRequired,
     handleChange: PropTypes.func.isRequired,
@@ -77,4 +79,4 @@ export default compose(
             this.props.getOrderList();
         }
     })
-)(Head);
+)(ResultsForHead);

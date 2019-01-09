@@ -9,13 +9,14 @@ import { styles } from './styles';
 
 import './Header.scss';
 
-const Header = ({ handleSignOut, onGetResults, fullName }) => {
+const Header = ({ handleSignOut, handleGetOrders, fullName, history }) => {
     return (
         <AppBar position='fixed'>
             <Toolbar className='toolbar-manager'>
                 <h2>Head: {fullName}</h2>
                 <MenuHead
-                    onGetResults={onGetResults}
+                    history={history}
+                    handleGetOrders={handleGetOrders}
                     handleSignOut={handleSignOut}
                     fullName={fullName}/>
             </Toolbar>
@@ -24,8 +25,9 @@ const Header = ({ handleSignOut, onGetResults, fullName }) => {
 };
 
 Header.propTypes = {
-    onGetResults: PropTypes.func.isRequired,
+    handleGetOrders: PropTypes.func.isRequired,
     handleSignOut: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
     fullName: PropTypes.string.isRequired
 };
 
