@@ -1,7 +1,6 @@
 const sql = require('mssql/msnodesqlv8')
 
 async function addPhoto(sqlConfig, photo) {
-    console.log(photo);
     const pool = await new sql.ConnectionPool(sqlConfig).connect();
     const { data, customerId, type, name } = photo;
     return await pool.request()

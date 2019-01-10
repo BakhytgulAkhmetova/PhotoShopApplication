@@ -1,4 +1,4 @@
-const { getOrderList, getOrderlById, getOrderListByCustomerId, getOrderLast } = require('../query/order');
+const { getOrderList, getOrderlById, getOrderListByCustomerId, getOrderLast, getOrderListByDate } = require('../query/order');
 const { addOrder, updateOrder, deleteOrder, addOrderDetails, updateOrderStatus } = require('../mutation/order');
 
 const orderRoutes = (app, sqlConfig) => {
@@ -8,6 +8,10 @@ const orderRoutes = (app, sqlConfig) => {
 
     app.get('/orderList/:id', async function (req, res) {
         res.send(await getOrderListByCustomerId(sqlConfig, req.params.id));
+    });
+
+    app.get('/orderList/:start/:end', async function (req, res) {
+        res.send(await getOrderListByDate(sqlConfig, req.params.start, req.params.end));
     });
 
     app.get('/order/:id', async function (req, res) {

@@ -1,8 +1,11 @@
-import { getCustomerOrderListFetch, addOrderFetch, getAllOrderListFetch, updateOrderStatusFetch, deleteOrderFetch
+import { getCustomerOrderListFetch, addOrderFetch, getAllOrderListFetch,
+    updateOrderStatusFetch, deleteOrderFetch,
+    getOrderListByDateRangeFetch
 } from '../../api/order';
 import { getCustomerOrderListRequest, getCustomerOrderListSuccess,
     getAllOrderListRequest, getAllOrderListSuccess,
     deleteOrderRequest, deleteOrderSuccess,
+    getOrderListByDateRangeRequest, getOrderListByDateRangeSuccess,
     updateOrderStatusRequest, updateOrderStatusSuccess } from './actionCreators';
 
 export  const getCustomerOrderList = (payload) => {
@@ -18,6 +21,14 @@ export  const getAllOrderList = () => {
         await dispatch(getAllOrderListRequest());
         await getAllOrderListFetch()
             .then(json => dispatch(getAllOrderListSuccess(json)));
+    };
+};
+
+export  const getOrderListByDateRange = (start, end) => {
+    return async dispatch => {
+        await dispatch(getOrderListByDateRangeRequest());
+        await getOrderListByDateRangeFetch(start, end)
+            .then(json => dispatch(getOrderListByDateRangeSuccess(json)));
     };
 };
 

@@ -16,10 +16,14 @@ const configSelect = {
     options: ['in progress', 'completed', 'waiting']
 };
 
-const ContentPage = ({ orderListAll, handleChange, handleDelete }) => {
+const ContentPage = ({ orderListAll, handleChange, changeDateRange,
+    handleDelete, handleSendDateRange, dateRange }) => {
     return (<div className='manager-content'>
         <h1 className='order-capture-results__text'>Resutls for some period</h1>
-        <DateRange/>
+        <DateRange
+            handleSendDateRange={handleSendDateRange}
+            changeDateRange={changeDateRange}
+            dateRange= {dateRange}/>
         <OrderTable
             button
             handleDelete={handleDelete}
@@ -34,6 +38,9 @@ const ContentPage = ({ orderListAll, handleChange, handleDelete }) => {
 ContentPage.propTypes = {
     orderListAll: PropTypes.array.isRequired,
     handleChange: PropTypes.func,
+    handleSendDateRange: PropTypes.func,
+    changeDateRange: PropTypes.func,
+    dateRange: PropTypes.object.isRequired,
     handleDelete: PropTypes.func
 };
 

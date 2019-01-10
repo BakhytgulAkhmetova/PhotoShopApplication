@@ -41,7 +41,6 @@ async function updateOrder(sqlConfig, id, orderUpdated) {
 async function updateOrderStatus(sqlConfig, id, orderUpdated) {
     const pool = await new sql.ConnectionPool(sqlConfig).connect();
     const { timeReady, status } = orderUpdated;
-    console.log(orderUpdated);
 
     return await pool.request()
     .input('ID', sql.Int, id)

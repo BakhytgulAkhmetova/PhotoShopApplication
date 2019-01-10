@@ -45,3 +45,14 @@ export const deleteOrderSuccess = () => {
         type: actions.DELETE_ORDER_SUCCESS
     };
 };
+
+export const getOrderListByDateRangeRequest = () => {
+    return { type: actions.GET_ORDER_LIST_BY_DATERANGE_REQUEST };
+};
+
+export const getOrderListByDateRangeSuccess = (payload) => {
+    return {
+        type: actions.GET_ORDER_LIST_BY_DATERANGE_SUCCESS,
+        payload
+    };
+};

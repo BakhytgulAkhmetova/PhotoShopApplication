@@ -8,6 +8,11 @@ export const getAllOrderListFetch = () => {
         .then(response => response.json());
 };
 
+export const getOrderListByDateRangeFetch = (start, end) => {
+    return fetch(`http://localhost:4000/orderList/${ start }/${ end }`)
+        .then(response => response.json());
+};
+
 export const addOrderFetch = (order) => {
     return fetch('http://localhost:4000/order/add', {
         method: 'POST',

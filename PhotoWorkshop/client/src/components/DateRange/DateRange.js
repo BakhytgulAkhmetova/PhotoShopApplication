@@ -1,9 +1,7 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
-import { compose, withState, withHandlers } from 'recompose';
-
-import { default as dateRangeInitial } from './data';
+import { compose, withHandlers } from 'recompose';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import './DateRange.scss';
@@ -17,7 +15,7 @@ const handlers = {
     }
 };
 
-const DateRange = ({ dateRange, handleChangeStart, handleChangeEnd }) => {
+const DateRange = ({ dateRange, handleChangeStart, handleChangeEnd, handleSendDateRange }) => {
     return (
         <form className='form-date-sort'>
             <div>
@@ -46,16 +44,17 @@ const DateRange = ({ dateRange, handleChangeStart, handleChangeEnd }) => {
                     onChange={handleChangeEnd}
                     endDate={dateRange.endDate}/>
             </div>
+            <button onClick={handleSendDateRange}>send</button>
         </form>);
 };
 
 DateRange.propTypes = {
     dateRange: PropTypes.object.isRequired,
     handleChangeStart: PropTypes.func.isRequired,
-    handleChangeEnd: PropTypes.func.isRequired
+    handleChangeEnd: PropTypes.func.isRequired,
+    handleSendDateRange: PropTypes.func.isRequired
 };
 
 export default compose(
-    withState('dateRange', 'changeDateRange', dateRangeInitial),
     withHandlers(handlers)
 )(DateRange);

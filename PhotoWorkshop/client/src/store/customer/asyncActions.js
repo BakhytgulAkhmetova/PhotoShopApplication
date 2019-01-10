@@ -8,9 +8,6 @@ export  const addCustomer = (payload) => {
     return async dispatch => {
         await dispatch(action.addCustomerRequest());
         await addCustomerFetch(payload);
-        // debugger;
-
-        // await dispatch(action.addCustomerSuccess(res));
     };
 };
 

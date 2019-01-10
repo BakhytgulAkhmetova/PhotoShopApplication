@@ -1,22 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, lifecycle } from 'recompose';
+import { compose, withState } from 'recompose';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 import { Header } from './Header';
+import { default as dateRangeInitial } from './data';
 import { Footer } from './Footer';
 import { ContentPage } from './ContentPage';
 import { signout } from '../../store/authentication/actionCreators';
 import { cleanOrderList } from '../../store/order/actionCreators';
-import { getAllOrderList, updateOrderStatus, deleteOrder } from '../../store/order/asyncActions';
+import { getAllOrderList, updateOrderStatus,
+    deleteOrder, getOrderListByDateRange } from '../../store/order/asyncActions';
 
 const mapStateToProps = (state) => ({
     head: state.head.current,
     orderListAll: state.order.orderListAll
 });
 
-const mapDispatchToProps = (dispatch, { history }) => ({
+const mapDispatchToProps = (dispatch, { history, dateRange }) => ({
+    handleSendDateRange: () => {
+        dispatch(getOrderListByDateRange(dateRange.startDate, dateRange.endDate));
+    },
     handleSignOut: () => {
         dispatch(cleanOrderList());
         dispatch(signout());
@@ -40,8 +45,8 @@ const mapDispatchToProps = (dispatch, { history }) => ({
     }
 });
 
-const ResultsForHead = ({ handleSignOut, handleGetOrders,
-    head, orderListAll, handleChange, handleDelete, history }) => {
+const ResultsForHead = ({ handleSignOut, handleGetOrders, dateRange, changeDateRange,
+    head, orderListAll, handleChange, handleSendDateRange, handleDelete, history }) => {
     const fullName = `${head.FirstName  }  ${  head.LastName[0] || ''}.`;
 
     return (<div>
@@ -51,6 +56,9 @@ const ResultsForHead = ({ handleSignOut, handleGetOrders,
             handleGetOrders={handleGetOrders}
             handleSignOut={handleSignOut}/>
         <ContentPage
+            handleSendDateRange={handleSendDateRange}
+            changeDateRange={changeDateRange}
+            dateRange={dateRange}
             handleDelete={handleDelete}
             handleChange={handleChange}
             orderListAll={orderListAll}/>
@@ -63,20 +71,19 @@ ResultsForHead.propTypes = {
     handleSignOut: PropTypes.func.isRequired,
     handleGetOrders: PropTypes.func.isRequired,
     head: PropTypes.object.isRequired,
+    dateRange: PropTypes.object.isRequired,
+    changeDateRange: PropTypes.func.isRequired,
     orderListAll: PropTypes.array.isRequired,
     handleChange: PropTypes.func.isRequired,
-    handleDelete: PropTypes.func.isRequired
+    handleDelete: PropTypes.func.isRequired,
+    handleSendDateRange: PropTypes.func.isRequired
 };
 
 export default compose(
+    withState('dateRange', 'changeDateRange', dateRangeInitial),
     withRouter,
     connect(
         mapStateToProps,
         mapDispatchToProps
-    ),
-    lifecycle({
-        componentDidMount() {
-            this.props.getOrderList();
-        }
-    })
+    )
 )(ResultsForHead);

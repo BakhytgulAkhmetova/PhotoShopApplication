@@ -73,10 +73,6 @@ const MenuCustomer = ({ classes, fullName, open,
     );
 };
 
-// MenuCustomer.propTypes = {
-//     classes: PropTypes.object.isRequired
-// };
-
 export default compose(
     withState('open', 'changeOpen', false),
     withHandlers(handlers),

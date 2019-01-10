@@ -42,6 +42,15 @@ export const order = (state = orderInitialState, action) => {
                 orderListAll: action.payload,
                 isLoading: !state.isLoading
             };
+        case types.GET_ORDER_LIST_BY_DATERANGE_REQUEST:
+            return { ...state, isLoading: !state.isLoading };
+
+        case types.GET_ORDER_LIST_BY_DATERANGE_SUCCESS:
+            return  {
+                ...state,
+                orderListAll: action.payload,
+                isLoading: !state.isLoading
+            };
         default:
             return state;
     }

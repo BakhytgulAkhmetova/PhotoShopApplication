@@ -6,6 +6,15 @@ async function getOrderList(sqlConfig) {
     return result.recordset;
 }
 
+async function getOrderListByDate(sqlConfig, start, end) {
+    const pool = await new sql.ConnectionPool(sqlConfig).connect();
+    const result = await pool.request()
+    .input('FROM', sql.DateTime, start)
+    .input('BEFORE', sql.DateTime, end)
+    .execute('GetOrderListByDate');
+    return result.recordset;
+}
+
 async function getOrderLast(sqlConfig) {
     const pool = await new sql.ConnectionPool(sqlConfig).connect();
     const result = await pool.request().execute('GetLastOrder');
@@ -28,6 +37,7 @@ module.exports = {
     getOrderList,
     getOrderLast,
     getOrderListByCustomerId,
+    getOrderListByDate,
     getOrderlById
  };
  
